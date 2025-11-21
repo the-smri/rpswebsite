@@ -841,8 +841,8 @@
             color: #16a34a;
         }
 
-        /* Academic Resources cards in the resources section use a dark background;
-           ensure their text is white for contrast without changing button backgrounds. */
+          /* Academic Resources cards in the resources section use a dark background;
+              ensure their text is white for contrast without changing button backgrounds. */
         #resourcesSection .feature-card {
             color: white;
         }
@@ -853,6 +853,33 @@
         #resourcesSection .feature-card option,
         #resourcesSection .feature-card .news-tag {
             color: white;
+        }
+
+        /* Style specifically for the syllabus card's class selector so the dropdown
+           sits at the top-right corner and stays clearly visible on the dark card. */
+        #resourcesSection .feature-card.syllabus-card {
+            position: relative;
+            padding-top: 3rem; /* make space for the absolutely positioned select */
+        }
+
+        #resourcesSection .feature-card.syllabus-card select {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 0.45rem 0.6rem;
+            border-radius: 8px;
+            z-index: 5;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        #resourcesSection .feature-card.syllabus-card select:focus {
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+            outline: none;
         }
 
         .news-card h3 {
@@ -1177,7 +1204,22 @@
                 <p class="section-subtitle">Download syllabi, class routines, academic calendar, and other educational documents</p>
 
                 <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
-                    <div class="feature-card" style="background:#002147; color:white;">
+                    <div class="feature-card syllabus-card" style="background:#002147; color:white;">
+                        <select id="syllabusClassSelect" style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); color:white;">
+                            <option value="all">All Classes</option>
+                            <option value="playgroup">Play Group</option>
+                            <option value="kg">KG</option>
+                            <option value="class1">Class 1</option>
+                            <option value="class2">Class 2</option>
+                            <option value="class3">Class 3</option>
+                            <option value="class4">Class 4</option>
+                            <option value="class5">Class 5</option>
+                            <option value="class6">Class 6</option>
+                            <option value="class7">Class 7</option>
+                            <option value="class8">Class 8</option>
+                            <option value="class9">Class 9</option>
+                            <option value="class10">Class 10</option>
+                        </select>
                         <div style="display:flex; align-items:center; gap:1rem;">
                             <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📘</div>
                             <div>
@@ -1186,21 +1228,6 @@
                             </div>
                         </div>
                         <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
-                            <select id="syllabusClassSelect" style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:white;">
-                                <option value="all">All Classes</option>
-                                <option value="playgroup">Play Group</option>
-                                <option value="kg">KG</option>
-                                <option value="class1">Class 1</option>
-                                <option value="class2">Class 2</option>
-                                <option value="class3">Class 3</option>
-                                <option value="class4">Class 4</option>
-                                <option value="class5">Class 5</option>
-                                <option value="class6">Class 6</option>
-                                <option value="class7">Class 7</option>
-                                <option value="class8">Class 8</option>
-                                <option value="class9">Class 9</option>
-                                <option value="class10">Class 10</option>
-                            </select>
                             <a id="syllabusPreview" href="docs/syllabus.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
                             <a id="syllabusDownload" href="docs/syllabus.pdf" download class="btn btn-primary">Download</a>
                         </div>
@@ -1215,21 +1242,6 @@
                             </div>
                         </div>
                         <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
-                            <select id="routineClassSelect" style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:white;">
-                                <option value="all">All Classes</option>
-                                <option value="playgroup">Play Group</option>
-                                <option value="kg">KG</option>
-                                <option value="class1">Class 1</option>
-                                <option value="class2">Class 2</option>
-                                <option value="class3">Class 3</option>
-                                <option value="class4">Class 4</option>
-                                <option value="class5">Class 5</option>
-                                <option value="class6">Class 6</option>
-                                <option value="class7">Class 7</option>
-                                <option value="class8">Class 8</option>
-                                <option value="class9">Class 9</option>
-                                <option value="class10">Class 10</option>
-                            </select>
                             <a id="routinePreview" href="docs/class-routine.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
                             <a id="routineDownload" href="docs/class-routine.pdf" download class="btn btn-primary">Download</a>
                         </div>
@@ -2971,30 +2983,45 @@
             const preview = document.getElementById('syllabusPreview');
             const download = document.getElementById('syllabusDownload');
             if (!preview || !download) return;
+            let href;
             if (slug === 'all') {
-                preview.href = 'docs/syllabus.pdf';
-                download.href = 'docs/syllabus.pdf';
+                href = 'docs/syllabus.pdf';
             } else {
-                preview.href = `docs/syllabus-${slug}.pdf`;
-                download.href = `docs/syllabus-${slug}.pdf`;
+                href = `docs/syllabus-${slug}.pdf`;
             }
+            // Preview should open in a new tab (no forced download)
+            preview.href = href;
+            preview.removeAttribute('download');
+            preview.target = '_blank';
+
+            // Download should force download and set a friendly filename
+            download.href = href;
+            const filename = href.split('/').pop();
+            download.setAttribute('download', filename);
         }
 
         function updateRoutineLinks() {
-            const sel = document.getElementById('routineClassSelect');
+            // Prefer an explicit routine selector, but fall back to the syllabus selector
+            const sel = document.getElementById('routineClassSelect') || document.getElementById('syllabusClassSelect');
             if (!sel) return;
             const v = sel.value;
             const slug = mapClassValueToSlug(v);
             const preview = document.getElementById('routinePreview');
             const download = document.getElementById('routineDownload');
             if (!preview || !download) return;
+            let href;
             if (slug === 'all') {
-                preview.href = 'docs/class-routine.pdf';
-                download.href = 'docs/class-routine.pdf';
+                href = 'docs/class-routine.pdf';
             } else {
-                preview.href = `docs/routine-${slug}.pdf`;
-                download.href = `docs/routine-${slug}.pdf`;
+                href = `docs/routine-${slug}.pdf`;
             }
+            preview.href = href;
+            preview.removeAttribute('download');
+            preview.target = '_blank';
+
+            download.href = href;
+            const filename = href.split('/').pop();
+            download.setAttribute('download', filename);
         }
 
         // Attach listeners and initialize links
