@@ -841,6 +841,20 @@
             color: #16a34a;
         }
 
+        /* Academic Resources cards in the resources section use a dark background;
+           ensure their text is white for contrast without changing button backgrounds. */
+        #resourcesSection .feature-card {
+            color: white;
+        }
+
+        #resourcesSection .feature-card h3,
+        #resourcesSection .feature-card p,
+        #resourcesSection .feature-card select,
+        #resourcesSection .feature-card option,
+        #resourcesSection .feature-card .news-tag {
+            color: white;
+        }
+
         .news-card h3 {
             font-size: 1.2rem;
             margin-bottom: 1rem;
@@ -1154,6 +1168,142 @@
                             <a href="#" class="read-more">Read More →</a>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Academic Resources / Documents Section (uniform two-color gradient) -->
+            <section class="section" id="resourcesSection">
+                <h2 class="section-title">Academic Resources & Documents</h2>
+                <p class="section-subtitle">Download syllabi, class routines, academic calendar, and other educational documents</p>
+
+                <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
+                    <div class="feature-card" style="background:#002147; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📘</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Syllabus</h3>
+                                <p style="margin:0; opacity:0.95;">Complete syllabus for all classes — updated.</p>
+                            </div>
+                        </div>
+                        <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+                            <select id="syllabusClassSelect" style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:white;">
+                                <option value="all">All Classes</option>
+                                <option value="playgroup">Play Group</option>
+                                <option value="kg">KG</option>
+                                <option value="class1">Class 1</option>
+                                <option value="class2">Class 2</option>
+                                <option value="class3">Class 3</option>
+                                <option value="class4">Class 4</option>
+                                <option value="class5">Class 5</option>
+                                <option value="class6">Class 6</option>
+                                <option value="class7">Class 7</option>
+                                <option value="class8">Class 8</option>
+                                <option value="class9">Class 9</option>
+                                <option value="class10">Class 10</option>
+                            </select>
+                            <a id="syllabusPreview" href="docs/syllabus.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a id="syllabusDownload" href="docs/syllabus.pdf" download class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" style="background:#002147; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🕒</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Class Routine</h3>
+                                <p style="margin:0; opacity:0.95;">Weekly class schedules for all grades.</p>
+                            </div>
+                        </div>
+                        <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+                            <select id="routineClassSelect" style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:white;">
+                                <option value="all">All Classes</option>
+                                <option value="playgroup">Play Group</option>
+                                <option value="kg">KG</option>
+                                <option value="class1">Class 1</option>
+                                <option value="class2">Class 2</option>
+                                <option value="class3">Class 3</option>
+                                <option value="class4">Class 4</option>
+                                <option value="class5">Class 5</option>
+                                <option value="class6">Class 6</option>
+                                <option value="class7">Class 7</option>
+                                <option value="class8">Class 8</option>
+                                <option value="class9">Class 9</option>
+                                <option value="class10">Class 10</option>
+                            </select>
+                            <a id="routinePreview" href="docs/class-routine.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a id="routineDownload" href="docs/class-routine.pdf" download class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" style="background:#002147; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📅</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Academic Calendar</h3>
+                                <p style="margin:0; opacity:0.95;">Holidays, exams and important dates.</p>
+                            </div>
+                        </div>
+                        <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
+                            <a href="docs/academic-calendar.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a href="docs/academic-calendar.pdf" download class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" style="background:#002147; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📁</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Other Documents</h3>
+                                <p style="margin:0; opacity:0.95;">Admission brochures, policies and guides.</p>
+                            </div>
+                        </div>
+                        <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
+                            <a href="docs/other-documents.zip" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a href="docs/other-documents.zip" download class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:1.25rem;">
+                    <a href="docs/" class="btn btn-secondary" style="padding:0.8rem 1.25rem; border-radius:12px;">View All Documents</a>
+                </div>
+            </section>
+
+            <!-- Results Search Section -->
+            <section class="section" id="resultSearchSection">
+                <h2 class="section-title">Check Exam Results</h2>
+                <p class="section-subtitle">Enter Student ID, Year and Exam to view, print or download the result</p>
+
+                <div class="table-container">
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:end;">
+                        <div class="form-group" style="flex:1; min-width:160px;">
+                            <label>Student ID</label>
+                            <input type="text" id="resStudentId" placeholder="e.g. RPS2024001">
+                        </div>
+
+                        <div class="form-group" style="width:150px;">
+                            <label>Year</label>
+                            <select id="resYear">
+                                <option>2024</option>
+                                <option>2025</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="width:220px;">
+                            <label>Exam</label>
+                            <select id="resExam">
+                                <option>Final Exam</option>
+                                <option>Mid-Term</option>
+                            </select>
+                        </div>
+
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-primary" onclick="searchResult()">Search</button>
+                            <button class="btn" onclick="clearResult()">Clear</button>
+                        </div>
+                    </div>
+
+                    <div id="resultOutput" style="margin-top:1.5rem;"></div>
                 </div>
             </section>
 
@@ -1855,7 +2005,7 @@
                                                     onclick="editResult('midterm-2024')">✏️</button>
                                                 <button class="icon-btn"
                                                     onclick="downloadResult('midterm-2024')">📥</button>
-                                            </div>
+                                                                                       </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -2619,6 +2769,247 @@
     </footer>
 
     <script>
+        // Results search data and helper functions
+        const sampleResults = {
+            'RPS2024001': {
+                '2024': {
+                    'Final Exam': {
+                        studentId: 'RPS2024001',
+                        name: 'Ahmed Hassan',
+                        class: '10',
+                        section: 'A',
+                        exam: 'Final Exam 2024',
+                        subjects: [
+                            { name: 'Mathematics', theory: 55, practical: 38, max: 100 },
+                            { name: 'Physics', theory: 52, practical: 36, max: 100 },
+                            { name: 'Chemistry', theory: 50, practical: 35, max: 100 },
+                            { name: 'Biology', theory: 48, practical: 34, max: 100 },
+                            { name: 'English', theory: 72, practical: 0, max: 100 },
+                            { name: 'Bangla', theory: 68, practical: 0, max: 100 },
+                            { name: 'ICT', theory: 40, practical: 0, max: 50 },
+                            { name: 'Religion', theory: 42, practical: 0, max: 50 }
+                        ]
+                    }
+                }
+            },
+            'RPS2024002': {
+                '2024': {
+                    'Mid-Term': {
+                        studentId: 'RPS2024002',
+                        name: 'Fatima Khan',
+                        class: '9',
+                        section: 'B',
+                        exam: 'Mid-Term 2024',
+                        subjects: [
+                            { name: 'Mathematics', theory: 40, practical: 0, max: 100 },
+                            { name: 'English', theory: 64, practical: 0, max: 100 },
+                            { name: 'Bangla', theory: 58, practical: 0, max: 100 },
+                            { name: 'Science', theory: 70, practical: 0, max: 100 }
+                        ]
+                    }
+                }
+            }
+        };
+
+        function searchResult() {
+            const id = document.getElementById('resStudentId').value.trim();
+            const year = document.getElementById('resYear').value;
+            const exam = document.getElementById('resExam').value;
+            const out = document.getElementById('resultOutput');
+            if (!id) {
+                alert('Please enter Student ID');
+                return;
+            }
+
+            const studentEntry = sampleResults[id] && sampleResults[id][year] && sampleResults[id][year][exam];
+            if (!studentEntry) {
+                out.innerHTML = '<div class="result-card"><p style="color:var(--gray)">Result not found. Please check ID, Year and Exam.</p></div>';
+                return;
+            }
+
+            renderResult(studentEntry);
+        }
+
+        function clearResult() {
+            document.getElementById('resStudentId').value = '';
+            document.getElementById('resultOutput').innerHTML = '';
+        }
+
+        function gradeForPercent(p) {
+            if (p >= 80) return { grade: 'A+', class: 'grade-a-plus' };
+            if (p >= 70) return { grade: 'A', class: 'grade-a' };
+            if (p >= 60) return { grade: 'A-', class: 'grade-a' };
+            if (p >= 50) return { grade: 'B', class: 'grade-b' };
+            if (p >= 40) return { grade: 'C', class: 'grade-c' };
+            return { grade: 'F', class: 'grade-c' };
+        }
+
+        function renderResult(data) {
+            const out = document.getElementById('resultOutput');
+            let totalObtained = 0;
+            let totalMax = 0;
+
+            const rows = data.subjects.map(s => {
+                const obtained = (s.theory || 0) + (s.practical || 0);
+                totalObtained += obtained;
+                totalMax += s.max;
+                const percent = (obtained / s.max) * 100;
+                const g = gradeForPercent(percent);
+                return `<tr>
+                    <td><strong>${s.name}</strong></td>
+                    <td>${s.theory || 0}</td>
+                    <td>${s.practical || '-'}</td>
+                    <td>${obtained}/${s.max}</td>
+                    <td><span class="grade-badge ${g.class}">${g.grade}</span></td>
+                </tr>`;
+            }).join('');
+
+            const percentage = totalMax ? ((totalObtained / totalMax) * 100) : 0;
+            const overallGrade = gradeForPercent(percentage).grade;
+
+            const resultHtml = `
+                <div class="result-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <div>
+                            <h3>${data.exam}</h3>
+                            <p style="color:var(--gray)">${data.name} | ID: ${data.studentId} | Class ${data.class} - Section ${data.section}</p>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-size:2rem; font-weight:bold; color:var(--primary)">${percentage.toFixed(2)}%</div>
+                            <div style="color:var(--gray)">Overall: ${overallGrade}</div>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Theory</th>
+                                    <th>Practical</th>
+                                    <th>Total</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${rows}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top:1.5rem; display:flex; gap:1rem; justify-content:flex-end;">
+                        <button class="btn btn-secondary" onclick="printResult('${data.studentId}','${data.exam.replace(/'/g,'')}')">Print</button>
+                        <button class="btn btn-primary" onclick="downloadResult('${data.studentId}','${data.exam.replace(/\s+/g,'_')}')">Download</button>
+                    </div>
+                </div>`;
+
+            out.innerHTML = resultHtml;
+        }
+
+        function buildResultFullHtml(id, examKey) {
+            const idVal = id;
+            const year = document.getElementById('resYear').value;
+            const exam = document.getElementById('resExam').value;
+            const data = sampleResults[idVal] && sampleResults[idVal][year] && sampleResults[idVal][year][exam];
+            if (!data) return '';
+
+            let totalObtained = 0;
+            let totalMax = 0;
+            const rows = data.subjects.map(s => {
+                const obtained = (s.theory || 0) + (s.practical || 0);
+                totalObtained += obtained;
+                totalMax += s.max;
+                const percent = (obtained / s.max) * 100;
+                const g = gradeForPercent(percent);
+                return `<tr><td><strong>${s.name}</strong></td><td>${s.theory || 0}</td><td>${s.practical || '-'}</td><td>${obtained}/${s.max}</td><td>${g.grade}</td></tr>`;
+            }).join('');
+            const percentage = totalMax ? ((totalObtained / totalMax) * 100) : 0;
+
+            const styles = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
+
+            return `<!doctype html><html><head><meta charset="utf-8"><title>Result - ${data.studentId}</title><style>${styles} body{padding:20px;}</style></head><body><h2>${data.exam}</h2><p>${data.name} | ID: ${data.studentId} | Class ${data.class} - Section ${data.section}</p><table border="0" style="width:100%;border-collapse:collapse;"><thead><tr><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Subject</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Theory</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Practical</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Total</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Grade</th></tr></thead><tbody>${rows}</tbody></table><div style="margin-top:1rem;"><strong>Total:</strong> ${totalObtained}/${totalMax} &nbsp;&nbsp; <strong>Percentage:</strong> ${percentage.toFixed(2)}% </div></body></html>`;
+        }
+
+        function printResult(id) {
+            const html = buildResultFullHtml(id);
+            if (!html) { alert('Nothing to print'); return; }
+            const w = window.open('', '_blank');
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+            w.focus();
+            setTimeout(() => { w.print(); }, 500);
+        }
+
+        function downloadResult(id, examKey) {
+            const html = buildResultFullHtml(id);
+            if (!html) { alert('Nothing to download'); return; }
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const year = document.getElementById('resYear').value;
+            a.download = `${id}_${examKey}_${year}.html`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+        }
+
+        // Update syllabus/routine download links based on selected class
+        function mapClassValueToSlug(val) {
+            // keep values safe for filenames
+            if (!val || val === 'all') return 'all';
+            return val.replace(/\s+/g, '-').toLowerCase();
+        }
+
+        function updateSyllabusLinks() {
+            const sel = document.getElementById('syllabusClassSelect');
+            if (!sel) return;
+            const v = sel.value;
+            const slug = mapClassValueToSlug(v);
+            const preview = document.getElementById('syllabusPreview');
+            const download = document.getElementById('syllabusDownload');
+            if (!preview || !download) return;
+            if (slug === 'all') {
+                preview.href = 'docs/syllabus.pdf';
+                download.href = 'docs/syllabus.pdf';
+            } else {
+                preview.href = `docs/syllabus-${slug}.pdf`;
+                download.href = `docs/syllabus-${slug}.pdf`;
+            }
+        }
+
+        function updateRoutineLinks() {
+            const sel = document.getElementById('routineClassSelect');
+            if (!sel) return;
+            const v = sel.value;
+            const slug = mapClassValueToSlug(v);
+            const preview = document.getElementById('routinePreview');
+            const download = document.getElementById('routineDownload');
+            if (!preview || !download) return;
+            if (slug === 'all') {
+                preview.href = 'docs/class-routine.pdf';
+                download.href = 'docs/class-routine.pdf';
+            } else {
+                preview.href = `docs/routine-${slug}.pdf`;
+                download.href = `docs/routine-${slug}.pdf`;
+            }
+        }
+
+        // Attach listeners and initialize links
+        document.addEventListener('DOMContentLoaded', function () {
+            // existing init log
+            console.log('Reaz Public School System Loaded');
+            // initialize syllabus/routine selectors
+            const sSel = document.getElementById('syllabusClassSelect');
+            const rSel = document.getElementById('routineClassSelect');
+            if (sSel) sSel.addEventListener('change', updateSyllabusLinks);
+            if (rSel) rSel.addEventListener('change', updateRoutineLinks);
+            updateSyllabusLinks();
+            updateRoutineLinks();
+        });
+
         // Page Navigation
         function showPage(page) {
             // Hide all pages
