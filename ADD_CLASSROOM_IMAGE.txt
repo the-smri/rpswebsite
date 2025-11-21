@@ -1,0 +1,30 @@
+INSTRUCTIONS TO ADD CLASSROOM IMAGE TO YOUR WEBSITE
+====================================================
+
+The classroom image has been saved to: f:\RPS Website\images\classroom.jpg
+
+TO ADD IT TO YOUR WEBSITE:
+
+1. Open index.html in your text editor
+2. Find line 864 which says: </section>
+   (This is right after the hero section that says "Welcome to Reaz Public School")
+3. After line 864, add these lines:
+
+            <!-- Classroom Showcase -->
+            <section style="max-width: 1200px; margin: 4rem auto 2rem; padding: 0 2rem;">
+                <img src="images/classroom.jpg" alt="RPS Classroom" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); display: block;">
+            </section>
+
+4. Save the file
+5. Refresh your browser to see the classroom image!
+
+RESULT:
+The beautiful classroom photo will appear right below the "Welcome to Reaz Public School" 
+section with rounded corners and a nice shadow effect.
+
+====================================================
+TEACHER IMAGES ALREADY ADDED:
+- teacher9.jpg (Md. Emamul Hauque - English Teacher) ✓
+- teacher10.jpg (Tanveer Ahmed - Math Teacher) ✓
+- classroom.jpg (Main classroom image) ✓
+====================================================
