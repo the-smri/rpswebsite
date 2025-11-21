@@ -98,6 +98,45 @@
             transform: scale(1.05);
         }
 
+        /* Nav dropdown for Academic */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-dropdown > a {
+            display: inline-block;
+        }
+
+        .nav-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--primary-dark);
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(2,6,23,0.15);
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+
+        .nav-dropdown .dropdown-content a {
+            display: block;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .nav-dropdown .dropdown-content a:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        .nav-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -315,6 +354,39 @@
             color: var(--gray);
             line-height: 1.6;
         }
+
+        /* LMS styles */
+        .lms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lms-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .lms-card h4 {
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .lms-card p { color: var(--gray); margin: 0; }
+
+        .lms-actions { display:flex; gap:0.5rem; margin-top:auto; }
+
+        .lms-modules { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.5rem; }
+
+        .lms-quiz-option { display:block; padding:0.6rem 0.8rem; border-radius:8px; border:1px solid #e2e8f0; cursor:pointer; margin-bottom:0.5rem; }
+
 
         /* Login Modal */
         .modal {
@@ -1066,6 +1138,7 @@
                 <a href="#" onclick="showPage('about')">About</a>
                 <a href="#" onclick="showPage('admission')">Admission</a>
                 <a href="#" onclick="showPage('academic')">Academic</a>
+                <a href="#" onclick="showPage('lms')">LMS</a>
                 <a href="#" onclick="showPage('gallery')">Gallery</a>
                 <a href="#" onclick="showPage('contact')">Contact</a>
                 <a href="#" class="login-btn" onclick="openLoginModal()">Login</a>
@@ -1582,6 +1655,37 @@
                         <p>info@reazpublicschool.edu<br>admission@reazpublicschool.edu</p>
                     </div>
                 </div>
+                <!-- Academic Progress: quick links to resources and results -->
+                <div style="margin-top:2.5rem;">
+                    <h3 style="margin-bottom:1rem;">Academic Progress</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem;">
+                        <div class="feature-card" style="display:flex; flex-direction:column;">
+                            <div style="display:flex; gap:0.75rem; align-items:center;">
+                                <div style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">📘</div>
+                                <div>
+                                    <h3 style="margin:0;">Academic Resources & Documents</h3>
+                                    <p style="margin:0; color:var(--gray);">Syllabi, routines, calendars and more.</p>
+                                </div>
+                            </div>
+                            <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
+                                <button class="btn" onclick="openResources(event)">View Resources</button>
+                            </div>
+                        </div>
+
+                        <div class="feature-card" style="display:flex; flex-direction:column;">
+                            <div style="display:flex; gap:0.75rem; align-items:center;">
+                                <div style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--primary)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">📝</div>
+                                <div>
+                                    <h3 style="margin:0;">Check Exam Results</h3>
+                                    <p style="margin:0; color:var(--gray);">Search by Student ID, Year and Exam.</p>
+                                </div>
+                            </div>
+                            <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
+                                <button class="btn btn-primary" onclick="openResults(event)">Check Results</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="table-container" style="margin-top: 2rem;">
                     <h3 style="margin-bottom: 1rem;">Send Us a Message</h3>
@@ -1700,6 +1804,65 @@
                     Teacher: teacher@rps.edu / teacher123<br>
                     Student: student@rps.edu / student123</small>
             </p>
+        </div>
+
+        <!-- LMS Page -->
+        <div id="lmsPage" style="display:none;">
+            <section class="container">
+                <h2 class="section-title">Learning Management System (LMS)</h2>
+                <p class="section-subtitle">Courses, Modules and Quizzes to support student learning</p>
+
+                <div class="lms-grid" id="lmsGrid">
+                    <div class="lms-card">
+                        <h4>Intro to Sports & Fitness</h4>
+                        <p>Basics of physical education, health and team sports.</p>
+                        <div class="lms-actions">
+                            <button class="btn" onclick="openCourseModal('course1')">View Modules</button>
+                            <button class="btn btn-primary" onclick="openQuizModal('course1')">Take Quiz</button>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <h4>Mathematics Fundamentals</h4>
+                        <p>Foundational numeracy and problem solving for primary grades.</p>
+                        <div class="lms-actions">
+                            <button class="btn" onclick="openCourseModal('course2')">View Modules</button>
+                            <button class="btn btn-primary" onclick="openQuizModal('course2')">Take Quiz</button>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <h4>Introduction to ICT</h4>
+                        <p>Basic computer literacy and internet safety.</p>
+                        <div class="lms-actions">
+                            <button class="btn" onclick="openCourseModal('course3')">View Modules</button>
+                            <button class="btn btn-primary" onclick="openQuizModal('course3')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Course Modules Modal -->
+        <div id="courseModal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeCourseModal()">✕</button>
+                <h3 id="courseModalTitle">Course Modules</h3>
+                <ul id="courseModuleList" class="lms-modules"></ul>
+            </div>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div id="quizModal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeQuizModal()">✕</button>
+                <h3 id="quizTitle">Quiz</h3>
+                <div id="quizContent"></div>
+                <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end;">
+                    <button class="btn" onclick="prevQuestion()">Previous</button>
+                    <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuestion()">Next</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3038,23 +3201,23 @@
         });
 
         // Page Navigation
-        function showPage(page) {
+        function showPage(page, evt) {
             // Hide all pages
             document.querySelectorAll('#mainContent > div').forEach(div => {
                 div.style.display = 'none';
             });
 
             // Show selected page
-            document.getElementById(page + 'Page').style.display = 'block';
+            const targetPage = document.getElementById(page + 'Page');
+            if (targetPage) targetPage.style.display = 'block';
 
-            // Update active nav
-            document.querySelectorAll('nav a').forEach(a => {
-                a.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            // Update active nav (safe fallback if event isn't provided)
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`nav a[onclick="showPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
 
             // Close mobile menu if open
-            document.getElementById('mainNav').classList.remove('mobile-open');
+            const mn = document.getElementById('mainNav'); if (mn) mn.classList.remove('mobile-open');
 
             // Scroll to top
             window.scrollTo(0, 0);
@@ -3102,6 +3265,130 @@
         function sendMessage() {
             alert('✅ Your message has been sent successfully! We will get back to you soon.');
         }
+
+        // Open Academic Resources section (located on Home page)
+        function openResources(evt) {
+            // show home page then scroll to resources section
+            showPage('home', evt);
+            setTimeout(() => {
+                const el = document.getElementById('resourcesSection');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+
+        // Open Check Exam Results section (located on Home page)
+        function openResults(evt) {
+            showPage('home', evt);
+            setTimeout(() => {
+                const el = document.getElementById('resultSearchSection');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+
+        /* LMS data and functions */
+        const LMS_COURSES = {
+            course1: {
+                id: 'course1',
+                title: 'Intro to Sports & Fitness',
+                modules: ['Health & Safety', 'Warm-up Exercises', 'Basic Team Sports', 'Nutrition Basics'],
+                quiz: [
+                    {q: 'Which activity is a warm-up?', options: ['Sprinting full speed','Stretching','Sleeping'], a: 1},
+                    {q: 'Which is important for good fitness?', options: ['Balanced diet','Skipping meals','Only video games'], a: 0}
+                ]
+            },
+            course2: {
+                id: 'course2',
+                title: 'Mathematics Fundamentals',
+                modules: ['Numbers & Operations', 'Basic Geometry', 'Problem Solving'],
+                quiz: [
+                    {q: 'What is 7 + 5?', options: ['11','12','13'], a: 1},
+                    {q: 'A triangle has how many sides?', options: ['2','3','4'], a: 1}
+                ]
+            },
+            course3: {
+                id: 'course3',
+                title: 'Introduction to ICT',
+                modules: ['Computer Basics', 'Internet Safety', 'Using Word Processors'],
+                quiz: [
+                    {q: 'Which is used to browse the web?', options: ['Browser','Calculator','Paint'], a: 0},
+                    {q: 'You should share passwords?', options: ['Yes','No'], a: 1}
+                ]
+            }
+        };
+
+        function openCourseModal(courseId) {
+            const course = LMS_COURSES[courseId];
+            if (!course) return alert('Course not found');
+            document.getElementById('courseModalTitle').innerText = course.title + ' — Modules';
+            const list = document.getElementById('courseModuleList');
+            list.innerHTML = '';
+            course.modules.forEach((m, idx) => {
+                const li = document.createElement('li');
+                li.textContent = (idx+1) + '. ' + m;
+                list.appendChild(li);
+            });
+            document.getElementById('courseModal').classList.add('active');
+        }
+
+        function closeCourseModal() { document.getElementById('courseModal').classList.remove('active'); }
+
+        // Quiz handling
+        let QUIZ_STATE = null;
+
+        function openQuizModal(courseId) {
+            const course = LMS_COURSES[courseId];
+            if (!course) return alert('Course not found');
+            QUIZ_STATE = { courseId: courseId, index: 0, answers: [] };
+            document.getElementById('quizTitle').innerText = course.title + ' — Quiz';
+            renderQuizQuestion();
+            document.getElementById('quizModal').classList.add('active');
+        }
+
+        function closeQuizModal() { document.getElementById('quizModal').classList.remove('active'); QUIZ_STATE = null; }
+
+        function renderQuizQuestion() {
+            if (!QUIZ_STATE) return;
+            const course = LMS_COURSES[QUIZ_STATE.courseId];
+            const qObj = course.quiz[QUIZ_STATE.index];
+            const container = document.getElementById('quizContent');
+            container.innerHTML = '';
+            const qEl = document.createElement('div'); qEl.style.marginBottom = '0.75rem'; qEl.innerHTML = '<strong>Q' + (QUIZ_STATE.index+1) + '.</strong> ' + qObj.q; container.appendChild(qEl);
+            qObj.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'lms-quiz-option';
+                btn.textContent = opt;
+                btn.onclick = () => { QUIZ_STATE.answers[QUIZ_STATE.index] = i; highlightSelected(i); };
+                container.appendChild(btn);
+            });
+            // show selected if exists
+            highlightSelected(QUIZ_STATE.answers[QUIZ_STATE.index]);
+            document.getElementById('quizNextBtn').innerText = (QUIZ_STATE.index === course.quiz.length-1) ? 'Finish' : 'Next';
+        }
+
+        function highlightSelected(selectedIdx) {
+            const opts = Array.from(document.querySelectorAll('#quizContent .lms-quiz-option'));
+            opts.forEach((b, i) => { b.style.borderColor = (i === selectedIdx ? 'var(--primary)' : '#e2e8f0'); b.style.background = (i===selectedIdx? 'rgba(37,99,235,0.06)':'white'); });
+        }
+
+        function nextQuestion() {
+            if (!QUIZ_STATE) return;
+            const course = LMS_COURSES[QUIZ_STATE.courseId];
+            // ensure answer selected before moving on
+            if (typeof QUIZ_STATE.answers[QUIZ_STATE.index] === 'undefined') { alert('Please select an option'); return; }
+            if (QUIZ_STATE.index === course.quiz.length-1) {
+                // finish and score
+                let score = 0;
+                course.quiz.forEach((q, i) => { if (q.a === QUIZ_STATE.answers[i]) score++; });
+                const pct = Math.round((score / course.quiz.length) * 100);
+                document.getElementById('quizContent').innerHTML = `<div style="text-align:center;"><h3>Your Score: ${score}/${course.quiz.length}</h3><p style="color:var(--gray)">${pct}%</p></div>`;
+                document.getElementById('quizNextBtn').innerText = 'Close';
+                return;
+            }
+            QUIZ_STATE.index++;
+            renderQuizQuestion();
+        }
+
+        function prevQuestion() { if (!QUIZ_STATE) return; if (QUIZ_STATE.index>0) { QUIZ_STATE.index--; renderQuizQuestion(); } }
 
         // Login Handler
         function handleLogin() {
@@ -3169,44 +3456,33 @@
         }
 
         // Dashboard Page Navigation
-        function showDashboardPage(page) {
+        function showDashboardPage(page, evt) {
             // Hide all dashboard content sections
-            document.querySelectorAll('.dashboard-content > div').forEach(div => {
-                div.style.display = 'none';
-            });
+            document.querySelectorAll('.dashboard-content > div').forEach(div => div.style.display = 'none');
 
             // Show selected section
-            document.getElementById(page).style.display = 'block';
+            const el = document.getElementById(page); if (el) el.style.display = 'block';
 
             // Update active menu
-            document.querySelectorAll('.sidebar-menu a').forEach(a => {
-                a.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`.sidebar-menu a[onclick="showDashboardPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
         }
 
-        function showTeacherPage(page) {
-            document.querySelectorAll('#teacherDashboard .dashboard-content > div').forEach(div => {
-                div.style.display = 'none';
-            });
-            document.getElementById(page).style.display = 'block';
-
-            document.querySelectorAll('#teacherDashboard .sidebar-menu a').forEach(a => {
-                a.classList.remove('active');
-            });
-            event.target.classList.add('active');
+        function showTeacherPage(page, evt) {
+            document.querySelectorAll('#teacherDashboard .dashboard-content > div').forEach(div => div.style.display = 'none');
+            const el = document.getElementById(page); if (el) el.style.display = 'block';
+            document.querySelectorAll('#teacherDashboard .sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`#teacherDashboard .sidebar-menu a[onclick="showTeacherPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
         }
 
-        function showStudentPage(page) {
-            document.querySelectorAll('#studentDashboard .dashboard-content > div').forEach(div => {
-                div.style.display = 'none';
-            });
-            document.getElementById(page).style.display = 'block';
-
-            document.querySelectorAll('#studentDashboard .sidebar-menu a').forEach(a => {
-                a.classList.remove('active');
-            });
-            event.target.classList.add('active');
+        function showStudentPage(page, evt) {
+            document.querySelectorAll('#studentDashboard .dashboard-content > div').forEach(div => div.style.display = 'none');
+            const el = document.getElementById(page); if (el) el.style.display = 'block';
+            document.querySelectorAll('#studentDashboard .sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`#studentDashboard .sidebar-menu a[onclick="showStudentPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
         }
 
         // Mobile Menu Toggle
