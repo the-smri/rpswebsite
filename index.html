@@ -1295,12 +1295,11 @@
 
                 <div
                     style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
-                    <div class="feature-card syllabus-card" style="background:#002147; color:white;">
+                    <div class="feature-card syllabus-card" style="background:#2182e4; color:rgb(0, 0, 0);">
                         <select id="syllabusClassSelect"
-                            style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); color:white;">
+                            style="padding:0.5rem; border-radius:8px; border:1px solid rgba(0, 0, 0, 0.12); color:rgb(255, 255, 255);">
                             <option value="all">All Classes</option>
-                            <option value="playgroup">Play Group</option>
-                            <option value="kg">KG</option>
+                            <option value="playgroup">Pre Primary</option>
                             <option value="class1">Class 1</option>
                             <option value="class2">Class 2</option>
                             <option value="class3">Class 3</option>
@@ -1318,7 +1317,7 @@
                                 📘</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Syllabus</h3>
-                                <p style="margin:0; opacity:0.95;">Complete syllabus for all classes — updated.</p>
+                                <p style="margin:0; opacity:0.95;">Complete syllabus for all classes.</p>
                             </div>
                         </div>
                         <div
@@ -1337,7 +1336,7 @@
                                 🕒</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Class Routine</h3>
-                                <p style="margin:0; opacity:0.95;">Weekly class schedules for all grades.</p>
+                                <p style="margin:0; opacity:0.95;">Class Routine from Pre-Primary to Eight. </p>
                             </div>
                         </div>
                         <div
@@ -1349,14 +1348,14 @@
                         </div>
                     </div>
 
-                    <div class="feature-card" style="background:#002147; color:white;">
+                    <div class="feature-card" style="background:#f01303; color:white;">
                         <div style="display:flex; align-items:center; gap:1rem;">
                             <div
-                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(212, 16, 230, 0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
                                 📅</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Academic Calendar</h3>
-                                <p style="margin:0; opacity:0.95;">Holidays, exams and important dates.</p>
+                                <p style="margin:0; opacity:0.95;">Holidays, exams and events.</p>
                             </div>
                         </div>
                         <div
@@ -1849,67 +1848,7 @@
                     Student: student@rps.edu / student123</small>
             </p>
         </div>
-
-        <!-- LMS Page -->
-        <div id="lmsPage" style="display:none;">
-            <section class="container">
-                <h2 class="section-title">Learning Management System (LMS)</h2>
-                <p class="section-subtitle">Courses, Modules and Quizzes to support student learning</p>
-
-                <div class="lms-grid" id="lmsGrid">
-                    <div class="lms-card">
-                        <h4>Intro to Sports & Fitness</h4>
-                        <p>Basics of physical education, health and team sports.</p>
-                        <div class="lms-actions">
-                            <button class="btn" onclick="openCourseModal('course1')">View Modules</button>
-                            <button class="btn btn-primary" onclick="openQuizModal('course1')">Take Quiz</button>
-                        </div>
-                    </div>
-
-                    <div class="lms-card">
-                        <h4>Mathematics Fundamentals</h4>
-                        <p>Foundational numeracy and problem solving for primary grades.</p>
-                        <div class="lms-actions">
-                            <button class="btn" onclick="openCourseModal('course2')">View Modules</button>
-                            <button class="btn btn-primary" onclick="openQuizModal('course2')">Take Quiz</button>
-                        </div>
-                    </div>
-
-                    <div class="lms-card">
-                        <h4>Introduction to ICT</h4>
-                        <p>Basic computer literacy and internet safety.</p>
-                        <div class="lms-actions">
-                            <button class="btn" onclick="openCourseModal('course3')">View Modules</button>
-                            <button class="btn btn-primary" onclick="openQuizModal('course3')">Take Quiz</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Course Modules Modal -->
-        <div id="courseModal" class="modal">
-            <div class="modal-content">
-                <button class="close-btn" onclick="closeCourseModal()">✕</button>
-                <h3 id="courseModalTitle">Course Modules</h3>
-                <ul id="courseModuleList" class="lms-modules"></ul>
-            </div>
-        </div>
-
-        <!-- Quiz Modal -->
-        <div id="quizModal" class="modal">
-            <div class="modal-content">
-                <button class="close-btn" onclick="closeQuizModal()">✕</button>
-                <h3 id="quizTitle">Quiz</h3>
-                <div id="quizContent"></div>
-                <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end;">
-                    <button class="btn" onclick="prevQuestion()">Previous</button>
-                    <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuestion()">Next</button>
-                </div>
-            </div>
-        </div>
     </div>
-
     <!-- Admission Form Modal -->
     <div id="admissionModal" class="modal">
         <div class="modal-content" style="max-width: 600px;">
