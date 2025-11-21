@@ -752,6 +752,199 @@
             color: white;
         }
 
+        /* News and Notice Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #e2e8f0;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            min-width: 60px;
+            z-index: 1;
+        }
+
+        .news-date .day {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .news-date .month {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+
+        .news-tag.notice {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .news-tag.event {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .news-tag.achievement {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .news-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .news-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+            margin-top: auto;
+        }
+
+        .read-more:hover {
+            gap: 0.8rem;
+        }
+
+        /* Social Media Slider */
+        .social-slider {
+            padding: 4rem 0;
+            background: var(--light);
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+            animation: slide 30s linear infinite;
+            width: max-content;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .social-card {
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .social-card img,
+        .social-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1rem 1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
         /* Teachers Marquee */
         .marquee-container {
             overflow: hidden;
@@ -908,36 +1101,139 @@
                             <h3>Creative Arts</h3>
                             <p>Music, dance, drama, and art programs to nurture creative talents.</p>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📱</div>
-                            <h3>Digital Learning</h3>
-                            <p>Smart classrooms and online learning platforms for modern education.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- News and Notice Section -->
+            <section class="section">
+                <h2 class="section-title">News & Notices</h2>
+                <p class="section-subtitle">Stay updated with the latest announcements and events</p>
+
+                <div class="news-grid">
+                    <!-- Notice Item 1 -->
+                    <div class="news-card">
+                        <div class="news-date">
+                            <span class="day">20</span>
+                            <span class="month">Nov</span>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🏛️</div>
-                            <h3>Safe Environment</h3>
-                            <p>CCTV monitored campus with 24/7 security ensuring student safety.</p>
+                        <div class="news-content">
+                            <span class="news-tag notice">Notice</span>
+                            <h3>Half Yearly Exam Schedule Published</h3>
+                            <p>The exam routine for classes 6 to 10 has been published. Download it from the student
+                                portal.</p>
+                            <a href="#" class="read-more">Read More →</a>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🚌</div>
-                            <h3>Transport Facility</h3>
-                            <p>Safe and reliable school bus service covering all major routes in the city.</p>
+                    </div>
+
+                    <!-- News Item 1 -->
+                    <div class="news-card">
+                        <div class="news-date">
+                            <span class="day">18</span>
+                            <span class="month">Nov</span>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🎓</div>
-                            <h3>Scholarship Programs</h3>
-                            <p>Merit-based scholarships and financial aid for deserving and talented students.</p>
+                        <div class="news-content">
+                            <span class="news-tag event">Event</span>
+                            <h3>Annual Sports Day 2025</h3>
+                            <p>Get ready for the biggest sports event of the year! Registration is now open for all
+                                students.</p>
+                            <a href="#" class="read-more">Read More →</a>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🏥</div>
-                            <h3>Health & Wellness</h3>
-                            <p>Regular health checkups and a dedicated infirmary to ensure student well-being.</p>
+                    </div>
+
+                    <!-- News Item 2 -->
+                    <div class="news-card">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-tag achievement">Achievement</span>
+                            <h3>RPS Wins Inter-School Debate</h3>
+                            <p>Congratulations to our debate team for securing the 1st position in the District
+                                Championship.</p>
+                            <a href="#" class="read-more">Read More →</a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Our Teachers Section -->
+            <!-- Social Media Slider Section -->
+            <section class="social-slider">
+                <div class="container">
+                    <h2 class="section-title">Life at RPS</h2>
+                    <p class="section-subtitle">Follow us on social media for daily updates</p>
+
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <!-- Slide 1 -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&auto=format&fit=crop&q=60"
+                                    alt="School Event">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📘</div>
+                                    <div class="social-text">Annual Cultural Fest 2024 highlights! What an amazing
+                                        performance by our students. #RPS #CulturalFest</div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 (Video) -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60"
+                                    alt="Sports Day">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📷</div>
+                                    <div class="social-text">Sports Day preparations in full swing! Are you ready?
+                                        🏃‍♂️🏆 #SportsDay #RPS</div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60"
+                                    alt="Classroom">
+                                <div class="social-overlay">
+                                    <div class="social-icon">🐦</div>
+                                    <div class="social-text">Interactive learning sessions in our smart classrooms. 📚💡
+                                        #Education #SmartLearning</div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&auto=format&fit=crop&q=60"
+                                    alt="Library">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📹</div>
+                                    <div class="social-text">Our library is now open with 1000+ new books! 📖✨ #Reading
+                                        #Library</div>
+                                </div>
+                            </div>
+
+                            <!-- Duplicate Slides for Infinite Scroll Effect -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&auto=format&fit=crop&q=60"
+                                    alt="School Event">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📘</div>
+                                    <div class="social-text">Annual Cultural Fest 2024 highlights! What an amazing
+                                        performance by our students. #RPS #CulturalFest</div>
+                                </div>
+                            </div>
+
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60"
+                                    alt="Sports Day">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📷</div>
+                                    <div class="social-text">Sports Day preparations in full swing! Are you ready?
+                                        🏃‍♂️🏆 #SportsDay #RPS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="section">
                 <h2 class="section-title">Meet Our Teachers</h2>
                 <p class="section-subtitle">Meet our dedicated team of educators</p>
