@@ -104,7 +104,7 @@
             display: inline-block;
         }
 
-        .nav-dropdown > a {
+        .nav-dropdown>a {
             display: inline-block;
         }
 
@@ -116,7 +116,7 @@
             background: var(--primary-dark);
             min-width: 220px;
             border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(2,6,23,0.15);
+            box-shadow: 0 8px 24px rgba(2, 6, 23, 0.15);
             z-index: 1001;
             padding: 0.5rem;
         }
@@ -130,7 +130,7 @@
         }
 
         .nav-dropdown .dropdown-content a:hover {
-            background: rgba(255,255,255,0.06);
+            background: rgba(255, 255, 255, 0.06);
         }
 
         .nav-dropdown:hover .dropdown-content {
@@ -368,7 +368,7 @@
             background: white;
             padding: 1.25rem;
             border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
@@ -379,13 +379,34 @@
             color: var(--dark);
         }
 
-        .lms-card p { color: var(--gray); margin: 0; }
+        .lms-card p {
+            color: var(--gray);
+            margin: 0;
+        }
 
-        .lms-actions { display:flex; gap:0.5rem; margin-top:auto; }
+        .lms-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
 
-        .lms-modules { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.5rem; }
+        .lms-modules {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
-        .lms-quiz-option { display:block; padding:0.6rem 0.8rem; border-radius:8px; border:1px solid #e2e8f0; cursor:pointer; margin-bottom:0.5rem; }
+        .lms-quiz-option {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
 
 
         /* Login Modal */
@@ -913,7 +934,7 @@
             color: #16a34a;
         }
 
-          /* Academic Resources cards in the resources section use a dark background;
+        /* Academic Resources cards in the resources section use a dark background;
               ensure their text is white for contrast without changing button backgrounds. */
         #resourcesSection .feature-card {
             color: white;
@@ -931,16 +952,17 @@
            sits at the top-right corner and stays clearly visible on the dark card. */
         #resourcesSection .feature-card.syllabus-card {
             position: relative;
-            padding-top: 3rem; /* make space for the absolutely positioned select */
+            padding-top: 3rem;
+            /* make space for the absolutely positioned select */
         }
 
         #resourcesSection .feature-card.syllabus-card select {
             position: absolute;
             top: 0.9rem;
             right: 0.9rem;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             color: white;
-            border: 1px solid rgba(255,255,255,0.18);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             padding: 0.45rem 0.6rem;
             border-radius: 8px;
             z-index: 5;
@@ -950,7 +972,7 @@
         }
 
         #resourcesSection .feature-card.syllabus-card select:focus {
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
             outline: none;
         }
 
@@ -1138,7 +1160,7 @@
                 <a href="#" onclick="showPage('about')">About</a>
                 <a href="#" onclick="showPage('admission')">Admission</a>
                 <a href="#" onclick="showPage('academic')">Academic</a>
-                <a href="#" onclick="showPage('lms')">LMS</a>
+
                 <a href="#" onclick="showPage('gallery')">Gallery</a>
                 <a href="#" onclick="showPage('contact')">Contact</a>
                 <a href="#" class="login-btn" onclick="openLoginModal()">Login</a>
@@ -1274,11 +1296,14 @@
             <!-- Academic Resources / Documents Section (uniform two-color gradient) -->
             <section class="section" id="resourcesSection">
                 <h2 class="section-title">Academic Resources & Documents</h2>
-                <p class="section-subtitle">Download syllabi, class routines, academic calendar, and other educational documents</p>
+                <p class="section-subtitle">Download syllabi, class routines, academic calendar, and other educational
+                    documents</p>
 
-                <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
+                <div
+                    style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
                     <div class="feature-card syllabus-card" style="background:#002147; color:white;">
-                        <select id="syllabusClassSelect" style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); color:white;">
+                        <select id="syllabusClassSelect"
+                            style="padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); color:white;">
                             <option value="all">All Classes</option>
                             <option value="playgroup">Play Group</option>
                             <option value="kg">KG</option>
@@ -1294,63 +1319,82 @@
                             <option value="class10">Class 10</option>
                         </select>
                         <div style="display:flex; align-items:center; gap:1rem;">
-                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📘</div>
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                📘</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Syllabus</h3>
                                 <p style="margin:0; opacity:0.95;">Complete syllabus for all classes — updated.</p>
                             </div>
                         </div>
-                        <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
-                            <a id="syllabusPreview" href="docs/syllabus.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
-                            <a id="syllabusDownload" href="docs/syllabus.pdf" download class="btn btn-primary">Download</a>
+                        <div
+                            style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+                            <a id="syllabusPreview" href="docs/syllabus.pdf" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a id="syllabusDownload" href="docs/syllabus.pdf" download
+                                class="btn btn-primary">Download</a>
                         </div>
                     </div>
 
                     <div class="feature-card" style="background:#002147; color:white;">
                         <div style="display:flex; align-items:center; gap:1rem;">
-                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🕒</div>
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                🕒</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Class Routine</h3>
                                 <p style="margin:0; opacity:0.95;">Weekly class schedules for all grades.</p>
                             </div>
                         </div>
-                        <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
-                            <a id="routinePreview" href="docs/class-routine.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
-                            <a id="routineDownload" href="docs/class-routine.pdf" download class="btn btn-primary">Download</a>
+                        <div
+                            style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+                            <a id="routinePreview" href="docs/class-routine.pdf" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a id="routineDownload" href="docs/class-routine.pdf" download
+                                class="btn btn-primary">Download</a>
                         </div>
                     </div>
 
                     <div class="feature-card" style="background:#002147; color:white;">
                         <div style="display:flex; align-items:center; gap:1rem;">
-                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📅</div>
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                📅</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Academic Calendar</h3>
                                 <p style="margin:0; opacity:0.95;">Holidays, exams and important dates.</p>
                             </div>
                         </div>
-                        <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
-                            <a href="docs/academic-calendar.pdf" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                        <div
+                            style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
+                            <a href="docs/academic-calendar.pdf" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
                             <a href="docs/academic-calendar.pdf" download class="btn btn-primary">Download</a>
                         </div>
                     </div>
 
                     <div class="feature-card" style="background:#002147; color:white;">
                         <div style="display:flex; align-items:center; gap:1rem;">
-                            <div style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">📁</div>
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                📁</div>
                             <div>
                                 <h3 style="margin:0 0 0.25rem 0;">Other Documents</h3>
                                 <p style="margin:0; opacity:0.95;">Admission brochures, policies and guides.</p>
                             </div>
                         </div>
-                        <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
-                            <a href="docs/other-documents.zip" download class="btn" style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                        <div
+                            style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
+                            <a href="docs/other-documents.zip" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
                             <a href="docs/other-documents.zip" download class="btn btn-primary">Download</a>
                         </div>
                     </div>
                 </div>
 
                 <div style="text-align:center; margin-top:1.25rem;">
-                    <a href="docs/" class="btn btn-secondary" style="padding:0.8rem 1.25rem; border-radius:12px;">View All Documents</a>
+                    <a href="docs/" class="btn btn-secondary" style="padding:0.8rem 1.25rem; border-radius:12px;">View
+                        All Documents</a>
                 </div>
             </section>
 
@@ -1661,26 +1705,32 @@
                     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem;">
                         <div class="feature-card" style="display:flex; flex-direction:column;">
                             <div style="display:flex; gap:0.75rem; align-items:center;">
-                                <div style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">📘</div>
+                                <div
+                                    style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">
+                                    📘</div>
                                 <div>
                                     <h3 style="margin:0;">Academic Resources & Documents</h3>
                                     <p style="margin:0; color:var(--gray);">Syllabi, routines, calendars and more.</p>
                                 </div>
                             </div>
-                            <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
+                            <div
+                                style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
                                 <button class="btn" onclick="openResources(event)">View Resources</button>
                             </div>
                         </div>
 
                         <div class="feature-card" style="display:flex; flex-direction:column;">
                             <div style="display:flex; gap:0.75rem; align-items:center;">
-                                <div style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--primary)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">📝</div>
+                                <div
+                                    style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--primary)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">
+                                    📝</div>
                                 <div>
                                     <h3 style="margin:0;">Check Exam Results</h3>
                                     <p style="margin:0; color:var(--gray);">Search by Student ID, Year and Exam.</p>
                                 </div>
                             </div>
-                            <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
+                            <div
+                                style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
                                 <button class="btn btn-primary" onclick="openResults(event)">Check Results</button>
                             </div>
                         </div>
@@ -2180,7 +2230,7 @@
                                                     onclick="editResult('midterm-2024')">✏️</button>
                                                 <button class="icon-btn"
                                                     onclick="downloadResult('midterm-2024')">📥</button>
-                                                                                       </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -3073,8 +3123,8 @@
                     </div>
 
                     <div style="margin-top:1.5rem; display:flex; gap:1rem; justify-content:flex-end;">
-                        <button class="btn btn-secondary" onclick="printResult('${data.studentId}','${data.exam.replace(/'/g,'')}')">Print</button>
-                        <button class="btn btn-primary" onclick="downloadResult('${data.studentId}','${data.exam.replace(/\s+/g,'_')}')">Download</button>
+                        <button class="btn btn-secondary" onclick="printResult('${data.studentId}','${data.exam.replace(/'/g, '')}')">Print</button>
+                        <button class="btn btn-primary" onclick="downloadResult('${data.studentId}','${data.exam.replace(/\s+/g, '_')}')">Download</button>
                     </div>
                 </div>`;
 
@@ -3292,8 +3342,8 @@
                 title: 'Intro to Sports & Fitness',
                 modules: ['Health & Safety', 'Warm-up Exercises', 'Basic Team Sports', 'Nutrition Basics'],
                 quiz: [
-                    {q: 'Which activity is a warm-up?', options: ['Sprinting full speed','Stretching','Sleeping'], a: 1},
-                    {q: 'Which is important for good fitness?', options: ['Balanced diet','Skipping meals','Only video games'], a: 0}
+                    { q: 'Which activity is a warm-up?', options: ['Sprinting full speed', 'Stretching', 'Sleeping'], a: 1 },
+                    { q: 'Which is important for good fitness?', options: ['Balanced diet', 'Skipping meals', 'Only video games'], a: 0 }
                 ]
             },
             course2: {
@@ -3301,8 +3351,8 @@
                 title: 'Mathematics Fundamentals',
                 modules: ['Numbers & Operations', 'Basic Geometry', 'Problem Solving'],
                 quiz: [
-                    {q: 'What is 7 + 5?', options: ['11','12','13'], a: 1},
-                    {q: 'A triangle has how many sides?', options: ['2','3','4'], a: 1}
+                    { q: 'What is 7 + 5?', options: ['11', '12', '13'], a: 1 },
+                    { q: 'A triangle has how many sides?', options: ['2', '3', '4'], a: 1 }
                 ]
             },
             course3: {
@@ -3310,8 +3360,8 @@
                 title: 'Introduction to ICT',
                 modules: ['Computer Basics', 'Internet Safety', 'Using Word Processors'],
                 quiz: [
-                    {q: 'Which is used to browse the web?', options: ['Browser','Calculator','Paint'], a: 0},
-                    {q: 'You should share passwords?', options: ['Yes','No'], a: 1}
+                    { q: 'Which is used to browse the web?', options: ['Browser', 'Calculator', 'Paint'], a: 0 },
+                    { q: 'You should share passwords?', options: ['Yes', 'No'], a: 1 }
                 ]
             }
         };
@@ -3324,7 +3374,7 @@
             list.innerHTML = '';
             course.modules.forEach((m, idx) => {
                 const li = document.createElement('li');
-                li.textContent = (idx+1) + '. ' + m;
+                li.textContent = (idx + 1) + '. ' + m;
                 list.appendChild(li);
             });
             document.getElementById('courseModal').classList.add('active');
@@ -3352,7 +3402,7 @@
             const qObj = course.quiz[QUIZ_STATE.index];
             const container = document.getElementById('quizContent');
             container.innerHTML = '';
-            const qEl = document.createElement('div'); qEl.style.marginBottom = '0.75rem'; qEl.innerHTML = '<strong>Q' + (QUIZ_STATE.index+1) + '.</strong> ' + qObj.q; container.appendChild(qEl);
+            const qEl = document.createElement('div'); qEl.style.marginBottom = '0.75rem'; qEl.innerHTML = '<strong>Q' + (QUIZ_STATE.index + 1) + '.</strong> ' + qObj.q; container.appendChild(qEl);
             qObj.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
                 btn.className = 'lms-quiz-option';
@@ -3362,12 +3412,12 @@
             });
             // show selected if exists
             highlightSelected(QUIZ_STATE.answers[QUIZ_STATE.index]);
-            document.getElementById('quizNextBtn').innerText = (QUIZ_STATE.index === course.quiz.length-1) ? 'Finish' : 'Next';
+            document.getElementById('quizNextBtn').innerText = (QUIZ_STATE.index === course.quiz.length - 1) ? 'Finish' : 'Next';
         }
 
         function highlightSelected(selectedIdx) {
             const opts = Array.from(document.querySelectorAll('#quizContent .lms-quiz-option'));
-            opts.forEach((b, i) => { b.style.borderColor = (i === selectedIdx ? 'var(--primary)' : '#e2e8f0'); b.style.background = (i===selectedIdx? 'rgba(37,99,235,0.06)':'white'); });
+            opts.forEach((b, i) => { b.style.borderColor = (i === selectedIdx ? 'var(--primary)' : '#e2e8f0'); b.style.background = (i === selectedIdx ? 'rgba(37,99,235,0.06)' : 'white'); });
         }
 
         function nextQuestion() {
@@ -3375,7 +3425,7 @@
             const course = LMS_COURSES[QUIZ_STATE.courseId];
             // ensure answer selected before moving on
             if (typeof QUIZ_STATE.answers[QUIZ_STATE.index] === 'undefined') { alert('Please select an option'); return; }
-            if (QUIZ_STATE.index === course.quiz.length-1) {
+            if (QUIZ_STATE.index === course.quiz.length - 1) {
                 // finish and score
                 let score = 0;
                 course.quiz.forEach((q, i) => { if (q.a === QUIZ_STATE.answers[i]) score++; });
@@ -3388,7 +3438,7 @@
             renderQuizQuestion();
         }
 
-        function prevQuestion() { if (!QUIZ_STATE) return; if (QUIZ_STATE.index>0) { QUIZ_STATE.index--; renderQuizQuestion(); } }
+        function prevQuestion() { if (!QUIZ_STATE) return; if (QUIZ_STATE.index > 0) { QUIZ_STATE.index--; renderQuizQuestion(); } }
 
         // Login Handler
         function handleLogin() {
