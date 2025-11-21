@@ -57,16 +57,12 @@
             font-weight: bold;
         }
 
-        .logo-icon {
-            background: white;
-            color: var(--primary);
+        .logo-img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
+            object-fit: cover;
+            border: 3px solid white;
         }
 
         nav {
@@ -549,12 +545,87 @@
             color: var(--secondary);
         }
 
+        /* Contact Info Card Overlay */
+        .contact-overlay {
+            background: #002147;
+            border-radius: 50px;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1150px;
+            margin: -5rem auto 3rem;
+            position: relative;
+            z-index: 100;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .contact-overlay-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .contact-overlay-item:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-overlay-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-overlay-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-overlay-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .contact-overlay {
+                flex-direction: column;
+                gap: 2rem;
+                border-radius: 20px;
+                margin-top: -4rem;
+                padding: 2rem;
+                width: 90%;
+            }
+
+            .contact-overlay-item {
+                width: 100%;
+            }
+
+            .contact-overlay-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                padding-bottom: 1.5rem;
+            }
+        }
+
         /* Footer */
         footer {
-            background: var(--dark);
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.95)), url('images/footer-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
             padding: 3rem 2rem 1rem;
-            margin-top: 4rem;
+            margin-top: 6rem;
+            /* Adjusted for overlap */
+            position: relative;
         }
 
         .footer-content {
@@ -687,6 +758,71 @@
             background: #ef4444;
             color: white;
         }
+
+        /* Teachers Marquee */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            padding: 2rem 0;
+            background: var(--light);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        .teacher-card {
+            display: inline-block;
+            width: 250px;
+            margin: 0 1rem;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            vertical-align: top;
+            transition: transform 0.3s;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .teacher-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .teacher-info {
+            padding: 1rem;
+        }
+
+        .teacher-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .teacher-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
     </style>
 </head>
 
@@ -695,7 +831,7 @@
     <header>
         <div class="header-top">
             <div class="logo">
-                <div class="logo-icon">🎓</div>
+                <img src="images/logo-green.png" alt="RPS Logo" class="logo-img">
                 <span>Reaz Public School</span>
             </div>
             <nav id="mainNav">
@@ -803,6 +939,118 @@
                             <div class="feature-icon">🏥</div>
                             <h3>Health & Wellness</h3>
                             <p>Regular health checkups and a dedicated infirmary to ensure student well-being.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Teachers Section -->
+            <section class="section">
+                <h2 class="section-title">Meet Our Teachers</h2>
+                <p class="section-subtitle">Meet our dedicated team of educators</p>
+
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        <!-- Original 7 Images -->
+                        <div class="teacher-card">
+                            <img src="images/teacher1.jpg" alt="Teacher 1">
+                            <div class="teacher-info">
+                                <h4>Bipasha Nourin</h4>
+                                <p> Principal</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher2.jpg" alt="S M Raisul Islam">
+                            <div class="teacher-info">
+                                <h4>S M Raisul Islam</h4>
+                                <p>Academic Coordinator</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 3">
+                            <div class="teacher-info">
+                                <h4>Teacher 3</h4>
+                                <p>English</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher4.jpg" alt="Teacher 4">
+                            <div class="teacher-info">
+                                <h4>Teacher 4</h4>
+                                <p>Senior Teacher</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 5">
+                            <div class="teacher-info">
+                                <h4>Teacher 5</h4>
+                                <p>Physics</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 6">
+                            <div class="teacher-info">
+                                <h4>Teacher 6</h4>
+                                <p>Chemistry</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 7">
+                            <div class="teacher-info">
+                                <h4>Teacher 7</h4>
+                                <p>Biology</p>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate for seamless loop -->
+                        <div class="teacher-card">
+                            <img src="images/teacher1.jpg" alt="Teacher 1">
+                            <div class="teacher-info">
+                                <h4>Teacher 1</h4>
+                                <p>Mathematics</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher2.jpg" alt="S M Raisul Islam">
+                            <div class="teacher-info">
+                                <h4>S M Raisul Islam</h4>
+                                <p>Science</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 3">
+                            <div class="teacher-info">
+                                <h4>Teacher 3</h4>
+                                <p>English</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher4.jpg" alt="Teacher 4">
+                            <div class="teacher-info">
+                                <h4>Teacher 4</h4>
+                                <p>History</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 5">
+                            <div class="teacher-info">
+                                <h4>Teacher 5</h4>
+                                <p>Physics</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 6">
+                            <div class="teacher-info">
+                                <h4>Teacher 6</h4>
+                                <p>Chemistry</p>
+                            </div>
+                        </div>
+                        <div class="teacher-card">
+                            <img src="images/teacher.png" alt="Teacher 7">
+                            <div class="teacher-info">
+                                <h4>Teacher 7</h4>
+                                <p>Biology</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2021,6 +2269,24 @@
 
     <!-- Footer -->
     <footer>
+        <!-- Floating Contact Card -->
+        <div class="contact-overlay">
+            <div class="contact-overlay-item">
+                <div class="contact-overlay-icon">📍</div>
+                <div class="contact-overlay-title">Address</div>
+                <div class="contact-overlay-text">Nabiganj, Bandar,<br>Narayanganj, Bangladesh</div>
+            </div>
+            <div class="contact-overlay-item">
+                <div class="contact-overlay-icon">📞</div>
+                <div class="contact-overlay-title">Phone Number</div>
+                <div class="contact-overlay-text">01713656668</div>
+            </div>
+            <div class="contact-overlay-item">
+                <div class="contact-overlay-icon">📧</div>
+                <div class="contact-overlay-title">Email Address</div>
+                <div class="contact-overlay-text">info@reazpublicschool.edu<br>admissions@reazpublicschool.edu</div>
+            </div>
+        </div>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Reaz Public School</h3>
@@ -2042,8 +2308,8 @@
             <div class="footer-section">
                 <h3>Contact Info</h3>
                 <ul>
-                    <li>📍 Main Road, Narayanganj</li>
-                    <li>📞 +880 1234-567890</li>
+                    <li>📍 Nabiganj, Bandar, Narayanganj, Bangladesh</li>
+                    <li>📞 01713656668</li>
                     <li>✉️ info@reazpublicschool.edu</li>
                     <li>🕐 8:00 AM - 4:00 PM</li>
                 </ul>
