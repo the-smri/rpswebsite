@@ -1,0 +1,13 @@
+reaz-public-school/
+├── config.php
+├── api.php
+├── auth.php
+├── results.php
+├── admissions.php
+├── students.php
+├── database.sql
+├── index.html (your frontend file)
+└── docs/
+    ├── syllabus.pdf
+    ├── class-routine.pdf
+    └── academic-calendar.pdf
