@@ -1,0 +1,3629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaz Public School - Modern School Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00B050;
+            --primary-dark: #0070C0;
+            --secondary: #00B050;
+            --accent: #FFC000;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            background: var(--accent);
+            padding: 0.7rem 1.5rem !important;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .login-btn:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+
+        /* Nav dropdown for Academic */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-dropdown>a {
+            display: inline-block;
+        }
+
+        .nav-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--primary-dark);
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(2, 6, 23, 0.15);
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+
+        .nav-dropdown .dropdown-content a {
+            display: block;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .nav-dropdown .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, rgba(0, 6, 10, 0.85), rgba(0, 176, 80, 0.6)), url('images/hero-bg.jpg') center/cover no-repeat;
+            padding: 5rem 2rem;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100px);
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: rgb(255, 255, 255);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* LMS styles */
+        .lms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lms-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .lms-card h4 {
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .lms-card p {
+            color: var(--gray);
+            margin: 0;
+        }
+
+        .lms-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .lms-modules {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .lms-quiz-option {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 1rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+            background: var(--light);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Table Styles */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .icon-btn:hover {
+            background: var(--light);
+        }
+
+        .icon-btn.edit {
+            color: var(--primary);
+        }
+
+        .icon-btn.delete {
+            color: #ef4444;
+        }
+
+        .icon-btn.view {
+            color: var(--secondary);
+        }
+
+        /* Contact Info Card Overlay */
+        .contact-overlay {
+            background: #002147;
+            border-radius: 50px;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1150px;
+            margin: -5rem auto 3rem;
+            position: relative;
+            z-index: 100;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .contact-overlay-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .contact-overlay-item:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-overlay-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-overlay-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-overlay-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .contact-overlay {
+                flex-direction: column;
+                gap: 2rem;
+                border-radius: 20px;
+                margin-top: -4rem;
+                padding: 2rem;
+                width: 90%;
+            }
+
+            .contact-overlay-item {
+                width: 100%;
+            }
+
+            .contact-overlay-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                padding-bottom: 1.5rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.95)), url('images/footer-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 6rem;
+            /* Adjusted for overlap */
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            nav.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .stats {
+                margin-top: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Result Card */
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .grade-a-plus {
+            background: #10b981;
+            color: white;
+        }
+
+        .grade-a {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .grade-b {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .grade-c {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* News and Notice Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #e2e8f0;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            min-width: 60px;
+            z-index: 1;
+        }
+
+        .news-date .day {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .news-date .month {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+
+        .news-tag.notice {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .news-tag.event {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .news-tag.achievement {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        /* Academic Resources cards in the resources section use a dark background;
+              ensure their text is white for contrast without changing button backgrounds. */
+        #resourcesSection .feature-card {
+            color: white;
+        }
+
+        #resourcesSection .feature-card h3,
+        #resourcesSection .feature-card p,
+        #resourcesSection .feature-card select,
+        #resourcesSection .feature-card option,
+        #resourcesSection .feature-card .news-tag {
+            color: white;
+        }
+
+        /* Style specifically for the syllabus card's class selector so the dropdown
+           sits at the top-right corner and stays clearly visible on the dark card. */
+        #resourcesSection .feature-card.syllabus-card {
+            position: relative;
+            padding-top: 3rem;
+            /* make space for the absolutely positioned select */
+        }
+
+        #resourcesSection .feature-card.syllabus-card select {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 0.45rem 0.6rem;
+            border-radius: 8px;
+            z-index: 5;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        #resourcesSection .feature-card.syllabus-card select:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+            outline: none;
+        }
+
+        .news-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .news-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+            margin-top: auto;
+        }
+
+        .read-more:hover {
+            gap: 0.8rem;
+        }
+
+        /* Social Media Slider */
+        .social-slider {
+            padding: 4rem 0;
+            background: var(--light);
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+            animation: slide 30s linear infinite;
+            width: max-content;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .social-card {
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .social-card img,
+        .social-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1rem 1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Teachers Marquee */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            padding: 2rem 0;
+            background: var(--light);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        .teacher-card {
+            display: inline-block;
+            width: 250px;
+            margin: 0 1rem;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            vertical-align: top;
+            transition: transform 0.3s;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .teacher-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .teacher-info {
+            padding: 1rem;
+        }
+
+        .teacher-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .teacher-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="images/logo-green.png" alt="RPS Logo" class="logo-img">
+                <span>Reaz Public School</span>
+            </div>
+            <nav id="mainNav">
+                <a href="#" class="active" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('about')">About</a>
+                <a href="#" onclick="showPage('admission')">Admission</a>
+                <a href="#" onclick="showPage('academic')">Academic</a>
+
+                <a href="#" onclick="showPage('gallery')">Gallery</a>
+                <a href="#" onclick="showPage('contact')">Contact</a>
+                <a href="#" class="login-btn" onclick="openLoginModal()">Login</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div id="mainContent">
+        <!-- Home Page -->
+        <div id="homePage">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Welcome to Reaz Public School</h1>
+                    <p>Nurturing Excellence, Building Future Leaders</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary" onclick="showPage('admission')">Apply for Admission</a>
+                        <a href="#" class="btn btn-secondary" onclick="openLoginModal()">Student Portal</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🏫</div>
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Teachers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-number">Since 2023</div>
+                    <div class="stat-label">Established</div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="container" style="margin-top: 4rem;">
+                <div class="section">
+                    <h2 class="section-title">Why Choose RPS?</h2>
+                    <p class="section-subtitle">Excellence in Education, Character Development, and Holistic Growth</p>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3>Academic Excellence</h3>
+                            <p>State-of-the-art curriculum with experienced faculty ensuring top-notch education for
+                                every student.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏅</div>
+                            <h3>Sports & Activities</h3>
+                            <p>Comprehensive sports programs and extracurricular activities for overall development.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔬</div>
+                            <h3>Modern Labs</h3>
+                            <p>Fully equipped science, computer, and language labs with latest technology.</p>
+                        </div>
+                    </div>
+            </section>
+            <!-- News and Notice Section -->
+            <section class="section">
+                <h2 class="section-title">News & Notices</h2>
+                <p class="section-subtitle">Stay updated with the latest announcements and events</p>
+
+                <div class="news-grid">
+                    <!-- Notice Item 1 -->
+                    <div class="news-card">
+                        <div class="news-date">
+                            <span class="day">20</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-tag notice">Notice</span>
+                            <h3>Half Yearly Exam Schedule Published</h3>
+                            <p>The exam routine for classes 6 to 10 has been published. Download it from the student
+                                portal.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 1 -->
+                    <div class="news-card">
+                        <div class="news-date">
+                            <span class="day">18</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-tag event">Event</span>
+                            <h3>Annual Sports Day 2025</h3>
+                            <p>Get ready for the biggest sports event of the year! Registration is now open for all
+                                students.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 2 -->
+                    <div class="news-card">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-tag achievement">Achievement</span>
+                            <h3>RPS Wins Inter-School Debate</h3>
+                            <p>Congratulations to our debate team for securing the 1st position in the District
+                                Championship.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Resources / Documents Section (uniform two-color gradient) -->
+            <section class="section" id="resourcesSection">
+                <h2 class="section-title">Academic Resources & Documents</h2>
+                <p class="section-subtitle">Download syllabi, class routines, academic calendar, and other educational
+                    documents</p>
+
+                <div
+                    style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
+                    <div class="feature-card syllabus-card" style="background:#2182e4; color:rgb(0, 0, 0);">
+                        <select id="syllabusClassSelect"
+                            style="padding:0.5rem; border-radius:8px; border:1px solid rgba(0, 0, 0, 0.12); color:rgb(255, 255, 255);">
+                            <option value="all">All Classes</option>
+                            <option value="playgroup">Pre Primary</option>
+                            <option value="class1">Class 1</option>
+                            <option value="class2">Class 2</option>
+                            <option value="class3">Class 3</option>
+                            <option value="class4">Class 4</option>
+                            <option value="class5">Class 5</option>
+                            <option value="class6">Class 6</option>
+                            <option value="class7">Class 7</option>
+                            <option value="class8">Class 8</option>
+                            <option value="class9">Class 9</option>
+                            <option value="class10">Class 10</option>
+                        </select>
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                📘</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Syllabus</h3>
+                                <p style="margin:0; opacity:0.95;">Complete syllabus for all classes.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+                            <a id="syllabusPreview" href="docs/syllabus.pdf" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a id="syllabusDownload" href="docs/syllabus.pdf" download
+                                class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" style="background:#002147; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                🕒</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Class Routine</h3>
+                                <p style="margin:0; opacity:0.95;">Class Routine from Pre-Primary to Eight. </p>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+                            <a id="routinePreview" href="docs/class-routine.pdf" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a id="routineDownload" href="docs/class-routine.pdf" download
+                                class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" style="background:#f01303; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(212, 16, 230, 0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                📅</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Academic Calendar</h3>
+                                <p style="margin:0; opacity:0.95;">Holidays, exams and events.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
+                            <a href="docs/academic-calendar.pdf" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a href="docs/academic-calendar.pdf" download class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" style="background:#002147; color:white;">
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <div
+                                style="width:64px; height:64px; border-radius:12px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.8rem;">
+                                📁</div>
+                            <div>
+                                <h3 style="margin:0 0 0.25rem 0;">Other Documents</h3>
+                                <p style="margin:0; opacity:0.95;">Admission brochures, policies and guides.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem;">
+                            <a href="docs/other-documents.zip" download class="btn"
+                                style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
+                            <a href="docs/other-documents.zip" download class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:1.25rem;">
+                    <a href="docs/" class="btn btn-secondary" style="padding:0.8rem 1.25rem; border-radius:12px;">View
+                        All Documents</a>
+                </div>
+            </section>
+
+            <!-- Results Search Section -->
+            <section class="section" id="resultSearchSection">
+                <h2 class="section-title">Check Exam Results</h2>
+                <p class="section-subtitle">Enter Student ID, Year and Exam to view, print or download the result</p>
+
+                <div class="table-container">
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:end;">
+                        <div class="form-group" style="flex:1; min-width:160px;">
+                            <label>Student ID</label>
+                            <input type="text" id="resStudentId" placeholder="e.g. RPS2024001">
+                        </div>
+
+                        <div class="form-group" style="width:150px;">
+                            <label>Year</label>
+                            <select id="resYear">
+                                <option>2024</option>
+                                <option>2025</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="width:220px;">
+                            <label>Exam</label>
+                            <select id="resExam">
+                                <option>Final Exam</option>
+                                <option>Mid-Term</option>
+                            </select>
+                        </div>
+
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-primary" onclick="searchResult()">Search</button>
+                            <button class="btn" onclick="clearResult()">Clear</button>
+                        </div>
+                    </div>
+
+                    <div id="resultOutput" style="margin-top:1.5rem;"></div>
+                </div>
+            </section>
+
+            <!-- Social Media Slider Section -->
+            <section class="social-slider">
+                <div class="container">
+                    <h2 class="section-title">Life at RPS</h2>
+                    <p class="section-subtitle">Follow us on social media for daily updates</p>
+
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <!-- Slide 1 -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&auto=format&fit=crop&q=60"
+                                    alt="School Event">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📘</div>
+                                    <div class="social-text">Annual Cultural Fest 2024 highlights! What an amazing
+                                        performance by our students. #RPS #CulturalFest</div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 (Video) -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60"
+                                    alt="Sports Day">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📷</div>
+                                    <div class="social-text">Sports Day preparations in full swing! Are you ready?
+                                        🏃‍♂️🏆 #SportsDay #RPS</div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60"
+                                    alt="Classroom">
+                                <div class="social-overlay">
+                                    <div class="social-icon">🐦</div>
+                                    <div class="social-text">Interactive learning sessions in our smart classrooms. 📚💡
+                                        #Education #SmartLearning</div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&auto=format&fit=crop&q=60"
+                                    alt="Library">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📹</div>
+                                    <div class="social-text">Our library is now open with 1000+ new books! 📖✨ #Reading
+                                        #Library</div>
+                                </div>
+                            </div>
+
+                            <!-- Duplicate Slides for Infinite Scroll Effect -->
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&auto=format&fit=crop&q=60"
+                                    alt="School Event">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📘</div>
+                                    <div class="social-text">Annual Cultural Fest 2024 highlights! What an amazing
+                                        performance by our students. #RPS #CulturalFest</div>
+                                </div>
+                            </div>
+
+                            <div class="social-card">
+                                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60"
+                                    alt="Sports Day">
+                                <div class="social-overlay">
+                                    <div class="social-icon">📷</div>
+                                    <div class="social-text">Sports Day preparations in full swing! Are you ready?
+                                        🏃‍♂️🏆 #SportsDay #RPS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Meet Our Teachers</h2>
+                <p class="section-subtitle">Meet our dedicated team of educators</p>
+
+                <div class="marquee-container">
+                    <div class="marquee-content">
+
+                        <!-- Original 8 Images -->
+                        <div class="teacher-card">
+                            <img src="images/teacher1.jpg" alt="Teacher 1">
+                            <div class="teacher-info">
+                                <h4>Bipasha Nourin</h4>
+                                <p>Principal</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher2.jpg" alt="S M Raisul Islam">
+                            <div class="teacher-info">
+                                <h4>S M Raisul Islam</h4>
+                                <p>Academic Coordinator</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher3.jpg" alt="Teacher 3">
+                            <div class="teacher-info">
+                                <h4>Md. Mohaimenul Hossain</h4>
+                                <p>Administrative Coordinator</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher4.jpg" alt="Teacher 4">
+                            <div class="teacher-info">
+                                <h4>Litton Hossain</h4>
+                                <p>Senior Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher5.jpg" alt="Teacher 5">
+                            <div class="teacher-info">
+                                <h4>Tanjina Rahman Urmi</h4>
+                                <p>Art & Craft Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher6.jpg" alt="Teacher 6">
+                            <div class="teacher-info">
+                                <h4>Sanjida Shosi</h4>
+                                <p>Bangla Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher7.jpg" alt="Teacher 7">
+                            <div class="teacher-info">
+                                <h4>Sabiha Nishi</h4>
+                                <p>BGS Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher8.jpg" alt="Teacher 8">
+                            <div class="teacher-info">
+                                <h4>Sahera Khatun Irin</h4>
+                                <p>Religion Teacher</p>
+                            </div>
+                        </div>
+
+                        <!-- New 4 Teachers -->
+                        <div class="teacher-card">
+                            <img src="images/teacher9.jpg" alt="Teacher 9">
+                            <div class="teacher-info">
+                                <h4>Md. Emamul Hauque</h4>
+                                <p>English Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher10.jpg" alt="Teacher 10">
+                            <div class="teacher-info">
+                                <h4>Tanveer Ahmed</h4>
+                                <p>Math Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher11.jpg" alt="Teacher 11">
+                            <div class="teacher-info">
+                                <h4>Md. Aminul Islam</h4>
+                                <p>Science Teacher</p>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <img src="images/teacher12.jpg" alt="Teacher 12">
+                            <div class="teacher-info">
+                                <h4>Fatema Tuz Johora</h4>
+                                <p>Computer Teacher</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="aboutPage" style="display:none;">
+            <section class="container">
+                <h2 class="section-title">About Reaz Public School</h2>
+                <div class="feature-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide quality education that empowers students to become responsible global citizens,
+                        critical thinkers, and lifelong learners.</p>
+                </div>
+                <div class="feature-card" style="margin-top: 2rem;">
+                    <h3>Our Vision</h3>
+                    <p>To be a leading educational institution recognized for excellence in academics, character
+                        development, and innovation.</p>
+                </div>
+                <div class="feature-card" style="margin-top: 2rem;">
+                    <h3>Principal's Message</h3>
+                    <p>Welcome to Reaz Public School. We are committed to nurturing young minds and building the leaders
+                        of tomorrow. Our dedicated faculty and staff work tirelessly to create a learning environment
+                        that fosters creativity, critical thinking, and character development.</p>
+                    <p style="margin-top: 1rem;"><strong>- Dr. Rahman Ahmed</strong><br>Principal, RPS</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Admission Page -->
+        <div id="admissionPage" style="display:none;">
+            <section class="container">
+                <h2 class="section-title">Admission Information</h2>
+                <p class="section-subtitle">Join the RPS Family - Admissions Open for 2025-26</p>
+
+                <div class="table-container">
+                    <h3 style="margin-bottom: 1rem;">Admission Process</h3>
+                    <ol style="padding-left: 2rem; line-height: 2;">
+                        <li>Fill out the online admission form</li>
+                        <li>Submit required documents</li>
+                        <li>Attend admission test (if applicable)</li>
+                        <li>Admission result announcement</li>
+                        <li>Complete admission formalities</li>
+                    </ol>
+
+                    <h3 style="margin: 2rem 0 1rem;">Required Documents</h3>
+                    <ul style="padding-left: 2rem; line-height: 2;">
+                        <li>Birth certificate</li>
+                        <li>Previous school transfer certificate</li>
+                        <li>Mark sheets of previous classes</li>
+                        <li>Passport-size photographs (4 copies)</li>
+                        <li>Parent/Guardian ID card copy</li>
+                    </ul>
+
+                    <button class="btn btn-primary" style="margin-top: 2rem;" onclick="openAdmissionForm()">Apply
+                        Online</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contactPage" style="display:none;">
+            <section class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <h3>Address</h3>
+                        <p>Reaz Public School<br>Main Road, Narayanganj<br>Dhaka Division, Bangladesh</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>+880 1234-567890<br>+880 1234-567891</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>info@reazpublicschool.edu<br>admission@reazpublicschool.edu</p>
+                    </div>
+                </div>
+                <!-- Academic Progress: quick links to resources and results -->
+                <div style="margin-top:2.5rem;">
+                    <h3 style="margin-bottom:1rem;">Academic Progress</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem;">
+                        <div class="feature-card" style="display:flex; flex-direction:column;">
+                            <div style="display:flex; gap:0.75rem; align-items:center;">
+                                <div
+                                    style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">
+                                    📘</div>
+                                <div>
+                                    <h3 style="margin:0;">Academic Resources & Documents</h3>
+                                    <p style="margin:0; color:var(--gray);">Syllabi, routines, calendars and more.</p>
+                                </div>
+                            </div>
+                            <div
+                                style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
+                                <button class="btn" onclick="openResources(event)">View Resources</button>
+                            </div>
+                        </div>
+
+                        <div class="feature-card" style="display:flex; flex-direction:column;">
+                            <div style="display:flex; gap:0.75rem; align-items:center;">
+                                <div
+                                    style="width:48px; height:48px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--primary)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem;">
+                                    📝</div>
+                                <div>
+                                    <h3 style="margin:0;">Check Exam Results</h3>
+                                    <p style="margin:0; color:var(--gray);">Search by Student ID, Year and Exam.</p>
+                                </div>
+                            </div>
+                            <div
+                                style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
+                                <button class="btn btn-primary" onclick="openResults(event)">Check Results</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Send Us a Message</h3>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" placeholder="Your message..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Gallery Page -->
+        <div id="galleryPage" style="display:none;">
+            <section class="container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <p class="section-subtitle">Capturing Moments, Creating Memories</p>
+                <div class="features-grid">
+                    <div class="feature-card"
+                        style="height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        📸
+                    </div>
+                    <div class="feature-card"
+                        style="height: 250px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        🎭
+                    </div>
+                    <div class="feature-card"
+                        style="height: 250px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        🏃
+                    </div>
+                    <div class="feature-card"
+                        style="height: 250px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        🎓
+                    </div>
+                    <div class="feature-card"
+                        style="height: 250px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        🔬
+                    </div>
+                    <div class="feature-card"
+                        style="height: 250px; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        🎨
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Academic Page -->
+        <div id="academicPage" style="display:none;">
+            <section class="container">
+                <h2 class="section-title">Academic Programs</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎒</div>
+                        <h3>Play Group - KG</h3>
+                        <p>Foundation years focusing on basic skills and social development.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <h3>Class 1 - 5</h3>
+                        <p>Primary education with emphasis on core subjects and values.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Class 6 - 8</h3>
+                        <p>Junior secondary with comprehensive curriculum and skill development.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Class 9 - 10</h3>
+                        <p>SSC preparation with science, commerce, and arts streams.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeLoginModal()">✕</button>
+            <h2 style="margin-bottom: 2rem; text-align: center;">Login Portal</h2>
+
+            <div class="form-group">
+                <label>Select Role</label>
+                <select id="loginRole">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Admin</option>
+                    <option value="staff">Staff</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Email / Username</label>
+                <input type="text" id="loginEmail" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%;" onclick="handleLogin()">Login</button>
+
+            <p style="text-align: center; margin-top: 1rem; color: var(--gray);">
+                Demo Credentials:<br>
+                <small>Admin: admin@rps.edu / admin123<br>
+                    Teacher: teacher@rps.edu / teacher123<br>
+                    Student: student@rps.edu / student123</small>
+            </p>
+        </div>
+    </div>
+    <!-- Admission Form Modal -->
+    <div id="admissionModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="close-btn" onclick="closeAdmissionForm()">✕</button>
+            <h2 style="margin-bottom: 2rem;">Online Admission Form</h2>
+
+            <div class="form-group">
+                <label>Student Name</label>
+                <input type="text" placeholder="Full Name" id="studentName">
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="studentDOB">
+            </div>
+
+            <div class="form-group">
+                <label>Class Applying For</label>
+                <select id="studentClass">
+                    <option>Play Group</option>
+                    <option>KG</option>
+                    <option>Class 1</option>
+                    <option>Class 2</option>
+                    <option>Class 3</option>
+                    <option>Class 4</option>
+                    <option>Class 5</option>
+                    <option>Class 6</option>
+                    <option>Class 7</option>
+                    <option>Class 8</option>
+                    <option>Class 9</option>
+                    <option>Class 10</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Father's Name</label>
+                <input type="text" placeholder="Father's Full Name" id="fatherName">
+            </div>
+
+            <div class="form-group">
+                <label>Mother's Name</label>
+                <input type="text" placeholder="Mother's Full Name" id="motherName">
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="tel" placeholder="+880 1234-567890" id="contactNumber">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="your@email.com" id="parentEmail">
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%;" onclick="submitAdmission()">Submit Application</button>
+        </div>
+    </div>
+
+    <!-- Dashboard Content (Shown after login) -->
+    <div id="dashboardArea" style="display:none;">
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" style="display:none;">
+            <div class="dashboard">
+                <aside class="sidebar">
+                    <h3
+                        style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                        Admin Panel</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" onclick="showDashboardPage('admin-overview')">📊 Overview</a>
+                        </li>
+                        <li><a href="#" onclick="showDashboardPage('admin-students')">👨‍🎓 Students</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-teachers')">👨‍🏫 Teachers</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-classes')">📚 Classes</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-results')">📝 Results</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-admissions')">📋 Admissions</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-fees')">💰 Fees</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-notices')">📢 Notices</a></li>
+                        <li><a href="#" onclick="showDashboardPage('admin-settings')">⚙️ Settings</a></li>
+                        <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+                    </ul>
+                </aside>
+
+                <main class="dashboard-content">
+                    <div id="admin-overview">
+                        <div class="dashboard-header">
+                            <div>
+                                <h2>Admin Dashboard</h2>
+                                <p style="color: var(--gray);">Welcome back, Administrator</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="showDashboardPage('admin-admissions')">+ Add
+                                New</button>
+                        </div>
+
+                        <div class="dashboard-cards">
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Total Students</span>
+                                    <span style="font-size: 1.5rem;">👨‍🎓</span>
+                                </div>
+                                <div class="card-value">2,547</div>
+                                <p style="color: var(--secondary); font-size: 0.9rem;">↑ 12% from last year</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Total Teachers</span>
+                                    <span style="font-size: 1.5rem;">👨‍🏫</span>
+                                </div>
+                                <div class="card-value">156</div>
+                                <p style="color: var(--secondary); font-size: 0.9rem;">↑ 5% from last year</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Pending Admissions</span>
+                                    <span style="font-size: 1.5rem;">📋</span>
+                                </div>
+                                <div class="card-value">48</div>
+                                <p style="color: var(--accent); font-size: 0.9rem;">Requires attention</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Revenue (Month)</span>
+                                    <span style="font-size: 1.5rem;">💰</span>
+                                </div>
+                                <div class="card-value">৳45L</div>
+                                <p style="color: var(--secondary); font-size: 0.9rem;">↑ 8% from last month</p>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <h3 style="margin-bottom: 1rem;">Recent Activities</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Activity</th>
+                                        <th>User</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>New Student Registration</td>
+                                        <td>Karim Ahmed</td>
+                                        <td>2025-11-20</td>
+                                        <td><span
+                                                style="background: var(--secondary); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem;">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Result Published - Class 10</td>
+                                        <td>Admin</td>
+                                        <td>2025-11-19</td>
+                                        <td><span
+                                                style="background: var(--secondary); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem;">Published</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fee Payment Received</td>
+                                        <td>Fatima Rahman</td>
+                                        <td>2025-11-18</td>
+                                        <td><span
+                                                style="background: var(--primary); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem;">Verified</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="admin-students" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>Student Management</h2>
+                            <button class="btn btn-primary" onclick="addNewStudent()">+ Add Student</button>
+                        </div>
+
+                        <div class="table-container">
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <input type="text" placeholder="Search students..."
+                                    style="flex: 1; padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                <select style="padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                    <option>All Classes</option>
+                                    <option>Class 10</option>
+                                    <option>Class 9</option>
+                                    <option>Class 8</option>
+                                </select>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Roll</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Section</th>
+                                        <th>Contact</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>Ahmed Hassan</td>
+                                        <td>10</td>
+                                        <td>A</td>
+                                        <td>+880 1234-567890</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view" onclick="viewStudent(1)">👁️</button>
+                                                <button class="icon-btn edit" onclick="editStudent(1)">✏️</button>
+                                                <button class="icon-btn delete" onclick="deleteStudent(1)">🗑️</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>Fatima Khan</td>
+                                        <td>10</td>
+                                        <td>A</td>
+                                        <td>+880 1234-567891</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view" onclick="viewStudent(2)">👁️</button>
+                                                <button class="icon-btn edit" onclick="editStudent(2)">✏️</button>
+                                                <button class="icon-btn delete" onclick="deleteStudent(2)">🗑️</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>003</td>
+                                        <td>Rahul Islam</td>
+                                        <td>10</td>
+                                        <td>B</td>
+                                        <td>+880 1234-567892</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view" onclick="viewStudent(3)">👁️</button>
+                                                <button class="icon-btn edit" onclick="editStudent(3)">✏️</button>
+                                                <button class="icon-btn delete" onclick="deleteStudent(3)">🗑️</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="admin-results" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>Result Management</h2>
+                            <button class="btn btn-primary" onclick="generateNewResult()">+ Generate New Result</button>
+                        </div>
+
+                        <div class="dashboard-cards">
+                            <div class="dashboard-card">
+                                <h3>Result Generator</h3>
+                                <p style="color: var(--gray); margin: 1rem 0;">Automatically calculate grades, GPA, and
+                                    rankings</p>
+                                <button class="btn btn-secondary" onclick="configureGradingScale()">Configure Grading
+                                    Scale</button>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Published Results</h3>
+                                <p style="color: var(--gray); margin: 1rem 0;">View and manage published exam results
+                                </p>
+                                <button class="btn btn-secondary" onclick="viewAllResults()">View All Results</button>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <h3 style="margin-bottom: 1rem;">Recent Results</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Exam</th>
+                                        <th>Class</th>
+                                        <th>Date Published</th>
+                                        <th>Students</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Final Exam 2024</td>
+                                        <td>Class 10</td>
+                                        <td>2025-11-15</td>
+                                        <td>250</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view"
+                                                    onclick="viewResult('final-2024')">👁️</button>
+                                                <button class="icon-btn edit"
+                                                    onclick="editResult('final-2024')">✏️</button>
+                                                <button class="icon-btn"
+                                                    onclick="downloadResult('final-2024')">📥</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mid-Term 2024</td>
+                                        <td>Class 9</td>
+                                        <td>2025-10-20</td>
+                                        <td>280</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view"
+                                                    onclick="viewResult('midterm-2024')">👁️</button>
+                                                <button class="icon-btn edit"
+                                                    onclick="editResult('midterm-2024')">✏️</button>
+                                                <button class="icon-btn"
+                                                    onclick="downloadResult('midterm-2024')">📥</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="admin-admissions" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>Admission Management</h2>
+                            <button class="btn btn-primary" onclick="openAdmissionForm()">+ New Admission</button>
+                        </div>
+
+                        <div class="table-container">
+                            <h3 style="margin-bottom: 1rem;">Pending Applications</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Application ID</th>
+                                        <th>Student Name</th>
+                                        <th>Class</th>
+                                        <th>Applied Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>APP001</td>
+                                        <td>Rahim Khan</td>
+                                        <td>Class 5</td>
+                                        <td>2025-11-20</td>
+                                        <td><span
+                                                style="background: var(--accent); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem;">Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view"
+                                                    onclick="viewApplication('APP001')">👁️</button>
+                                                <button class="icon-btn edit"
+                                                    onclick="processApplication('APP001')">✅</button>
+                                                <button class="icon-btn delete"
+                                                    onclick="rejectApplication('APP001')">❌</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>APP002</td>
+                                        <td>Sara Ahmed</td>
+                                        <td>Class 3</td>
+                                        <td>2025-11-19</td>
+                                        <td><span
+                                                style="background: var(--accent); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem;">Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="icon-btn view"
+                                                    onclick="viewApplication('APP002')">👁️</button>
+                                                <button class="icon-btn edit"
+                                                    onclick="processApplication('APP002')">✅</button>
+                                                <button class="icon-btn delete"
+                                                    onclick="rejectApplication('APP002')">❌</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="admin-settings" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>System Settings</h2>
+                        </div>
+
+                        <div class="table-container">
+                            <h3 style="margin-bottom: 1rem;">General Settings</h3>
+                            <div class="form-group">
+                                <label>School Name</label>
+                                <input type="text" value="Reaz Public School">
+                            </div>
+                            <div class="form-group">
+                                <label>Academic Year</label>
+                                <input type="text" value="2025-2026">
+                            </div>
+                            <div class="form-group">
+                                <label>Grading System</label>
+                                <select>
+                                    <option>Bangladesh National Curriculum</option>
+                                    <option>International Baccalaureate</option>
+                                    <option>Cambridge International</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary">Save Settings</button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Teacher Dashboard -->
+        <div id="teacherDashboard" style="display:none;">
+            <div class="dashboard">
+                <aside class="sidebar">
+                    <h3
+                        style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                        Teacher Panel</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" onclick="showTeacherPage('teacher-overview')">📊 Overview</a>
+                        </li>
+                        <li><a href="#" onclick="showTeacherPage('teacher-classes')">📚 My Classes</a></li>
+                        <li><a href="#" onclick="showTeacherPage('teacher-students')">👨‍🎓 Students</a></li>
+                        <li><a href="#" onclick="showTeacherPage('teacher-attendance')">✅ Attendance</a></li>
+                        <li><a href="#" onclick="showTeacherPage('teacher-marks')">📝 Enter Marks</a></li>
+                        <li><a href="#" onclick="showTeacherPage('teacher-materials')">📄 Materials</a></li>
+                        <li><a href="#" onclick="showTeacherPage('teacher-routine')">📅 Routine</a></li>
+                        <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+                    </ul>
+                </aside>
+
+                <main class="dashboard-content">
+                    <div id="teacher-overview">
+                        <div class="dashboard-header">
+                            <div>
+                                <h2>Teacher Dashboard</h2>
+                                <p style="color: var(--gray);">Welcome, Professor Rahman</p>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-cards">
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">My Classes</span>
+                                    <span style="font-size: 1.5rem;">📚</span>
+                                </div>
+                                <div class="card-value">6</div>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Active classes</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Total Students</span>
+                                    <span style="font-size: 1.5rem;">👨‍🎓</span>
+                                </div>
+                                <div class="card-value">180</div>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Under my supervision</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Pending Marks</span>
+                                    <span style="font-size: 1.5rem;">📝</span>
+                                </div>
+                                <div class="card-value">12</div>
+                                <p style="color: var(--accent); font-size: 0.9rem;">Need to submit</p>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <h3 style="margin-bottom: 1rem;">Today's Classes</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Class</th>
+                                        <th>Section</th>
+                                        <th>Subject</th>
+                                        <th>Room</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>8:00 AM - 9:00 AM</td>
+                                        <td>Class 10</td>
+                                        <td>A</td>
+                                        <td>Mathematics</td>
+                                        <td>Room 301</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:00 AM - 11:00 AM</td>
+                                        <td>Class 9</td>
+                                        <td>B</td>
+                                        <td>Mathematics</td>
+                                        <td>Room 302</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="teacher-marks" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>Enter Student Marks</h2>
+                            <button class="btn btn-primary" onclick="saveAllMarks()">Save All</button>
+                        </div>
+
+                        <div class="table-container">
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <select style="padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                    <option>Class 10 - Section A</option>
+                                    <option>Class 9 - Section B</option>
+                                </select>
+                                <select style="padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                    <option>Final Exam 2024</option>
+                                    <option>Mid-Term 2024</option>
+                                    <option>Class Test 1</option>
+                                </select>
+                                <select style="padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                    <option>Mathematics</option>
+                                    <option>Physics</option>
+                                    <option>Chemistry</option>
+                                </select>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Roll</th>
+                                        <th>Student Name</th>
+                                        <th>Theory (60)</th>
+                                        <th>Practical (40)</th>
+                                        <th>Total</th>
+                                        <th>Grade</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>Ahmed Hassan</td>
+                                        <td><input type="number" value="55"
+                                                style="width: 60px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;"
+                                                onchange="calculateTotal(this)"></td>
+                                        <td><input type="number" value="38"
+                                                style="width: 60px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;"
+                                                onchange="calculateTotal(this)"></td>
+                                        <td><strong>93</strong></td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>✅ Saved</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>Fatima Khan</td>
+                                        <td><input type="number" value="52"
+                                                style="width: 60px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;"
+                                                onchange="calculateTotal(this)"></td>
+                                        <td><input type="number" value="36"
+                                                style="width: 60px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;"
+                                                onchange="calculateTotal(this)"></td>
+                                        <td><strong>88</strong></td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>✅ Saved</td>
+                                    </tr>
+                                    <tr>
+                                        <td>003</td>
+                                        <td>Rahul Islam</td>
+                                        <td><input type="number" placeholder="Enter"
+                                                style="width: 60px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                        </td>
+                                        <td><input type="number" placeholder="Enter"
+                                                style="width: 60px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                        </td>
+                                        <td><strong>-</strong></td>
+                                        <td>-</td>
+                                        <td>⏳ Pending</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div
+                                style="margin-top: 2rem; padding: 1.5rem; background: var(--light); border-radius: 8px;">
+                                <h4>Grading Scale</h4>
+                                <p style="margin-top: 0.5rem; color: var(--gray);">
+                                    A+ (80-100) | A (70-79) | A- (60-69) | B (50-59) | C (40-49) | D (33-39) | F (0-32)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="teacher-attendance" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>Attendance Management</h2>
+                            <button class="btn btn-primary" onclick="saveAttendance()">Save Attendance</button>
+                        </div>
+
+                        <div class="table-container">
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <select style="padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                    <option>Class 10 - Section A</option>
+                                    <option>Class 9 - Section B</option>
+                                </select>
+                                <input type="date"
+                                    style="padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px;"
+                                    value="2025-11-20">
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Roll</th>
+                                        <th>Student Name</th>
+                                        <th>Status</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>Ahmed Hassan</td>
+                                        <td>
+                                            <select
+                                                style="padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                                <option>Present</option>
+                                                <option>Absent</option>
+                                                <option>Late</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" placeholder="Remarks"
+                                                style="width: 100%; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>Fatima Khan</td>
+                                        <td>
+                                            <select
+                                                style="padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                                <option>Present</option>
+                                                <option>Absent</option>
+                                                <option>Late</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" placeholder="Remarks"
+                                                style="width: 100%; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Student Dashboard -->
+        <div id="studentDashboard" style="display:none;">
+            <div class="dashboard">
+                <aside class="sidebar">
+                    <h3
+                        style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                        Student Panel</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" onclick="showStudentPage('student-overview')">📊 Dashboard</a>
+                        </li>
+                        <li><a href="#" onclick="showStudentPage('student-profile')">👤 My Profile</a></li>
+                        <li><a href="#" onclick="showStudentPage('student-results')">📝 Results</a></li>
+                        <li><a href="#" onclick="showStudentPage('student-attendance')">✅ Attendance</a></li>
+                        <li><a href="#" onclick="showStudentPage('student-routine')">📅 Routine</a></li>
+                        <li><a href="#" onclick="showStudentPage('student-materials')">📚 Study Materials</a></li>
+                        <li><a href="#" onclick="showStudentPage('student-fees')">💰 Fees</a></li>
+                        <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+                    </ul>
+                </aside>
+
+                <main class="dashboard-content">
+                    <div id="student-overview">
+                        <div class="dashboard-header">
+                            <div>
+                                <h2>Student Dashboard</h2>
+                                <p style="color: var(--gray);">Welcome, Ahmed Hassan</p>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-cards">
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Current GPA</span>
+                                    <span style="font-size: 1.5rem;">🎓</span>
+                                </div>
+                                <div class="card-value">4.85</div>
+                                <p style="color: var(--secondary); font-size: 0.9rem;">Excellent performance</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Class Rank</span>
+                                    <span style="font-size: 1.5rem;">🏆</span>
+                                </div>
+                                <div class="card-value">2nd</div>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Out of 250 students</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Attendance</span>
+                                    <span style="font-size: 1.5rem;">✅</span>
+                                </div>
+                                <div class="card-value">95%</div>
+                                <p style="color: var(--secondary); font-size: 0.9rem;">Excellent attendance</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <div class="card-header">
+                                    <span style="color: var(--gray);">Due Fees</span>
+                                    <span style="font-size: 1.5rem;">💰</span>
+                                </div>
+                                <div class="card-value">৳0</div>
+                                <p style="color: var(--secondary); font-size: 0.9rem;">All paid</p>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 1rem;">Performance Overview</h3>
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                                <div
+                                    style="text-align: center; padding: 1rem; background: var(--light); border-radius: 8px;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">6</div>
+                                    <div style="color: var(--gray);">A+ Grades</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 1rem; background: var(--light); border-radius: 8px;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📈</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">92%</div>
+                                    <div style="color: var(--gray);">Average</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 1rem; background: var(--light); border-radius: 8px;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">8</div>
+                                    <div style="color: var(--gray);">Subjects</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="student-results" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>My Results</h2>
+                            <button class="btn btn-primary" onclick="downloadMarksheet()">📥 Download Marksheet</button>
+                        </div>
+
+                        <div class="result-card">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--light);">
+                                <div>
+                                    <h2>Final Examination 2024</h2>
+                                    <p style="color: var(--gray);">Class 10 - Section A</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">4.85</div>
+                                    <div style="color: var(--gray);">Overall GPA</div>
+                                </div>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Theory</th>
+                                        <th>Practical</th>
+                                        <th>Total</th>
+                                        <th>Grade</th>
+                                        <th>GPA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Mathematics</strong></td>
+                                        <td>55/60</td>
+                                        <td>38/40</td>
+                                        <td>93/100</td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>5.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Physics</strong></td>
+                                        <td>52/60</td>
+                                        <td>36/40</td>
+                                        <td>88/100</td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>5.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Chemistry</strong></td>
+                                        <td>50/60</td>
+                                        <td>35/40</td>
+                                        <td>85/100</td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>5.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Biology</strong></td>
+                                        <td>48/60</td>
+                                        <td>34/40</td>
+                                        <td>82/100</td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>5.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>English</strong></td>
+                                        <td>72/100</td>
+                                        <td>-</td>
+                                        <td>72/100</td>
+                                        <td><span class="grade-badge grade-a">A</span></td>
+                                        <td>4.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bangla</strong></td>
+                                        <td>68/100</td>
+                                        <td>-</td>
+                                        <td>68/100</td>
+                                        <td><span class="grade-badge grade-a">A</span></td>
+                                        <td>3.50</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ICT</strong></td>
+                                        <td>40/50</td>
+                                        <td>-</td>
+                                        <td>40/50</td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>5.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Religion</strong></td>
+                                        <td>42/50</td>
+                                        <td>-</td>
+                                        <td>42/50</td>
+                                        <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                        <td>5.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div
+                                style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                                <div
+                                    style="background: var(--light); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                                    <div style="color: var(--gray); margin-bottom: 0.5rem;">Total Marks</div>
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">570/650
+                                    </div>
+                                </div>
+                                <div
+                                    style="background: var(--light); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                                    <div style="color: var(--gray); margin-bottom: 0.5rem;">Percentage</div>
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">87.69%</div>
+                                </div>
+                                <div
+                                    style="background: var(--light); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                                    <div style="color: var(--gray); margin-bottom: 0.5rem;">Class Position</div>
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">2nd</div>
+                                </div>
+                            </div>
+
+                            <div
+                                style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%); border-radius: 8px; color: white; text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: bold;">🎉 Excellent Performance!</div>
+                                <p style="margin-top: 0.5rem; opacity: 0.9;">You have achieved outstanding results. Keep
+                                    up the great work!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="student-profile" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>My Profile</h2>
+                            <button class="btn btn-primary" onclick="editStudentProfile()">Edit Profile</button>
+                        </div>
+
+                        <div class="result-card">
+                            <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem;">
+                                <div
+                                    style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                    👤
+                                </div>
+                                <div>
+                                    <h2>Ahmed Hassan</h2>
+                                    <p style="color: var(--gray); margin-top: 0.5rem;">Roll No: 001 | Class 10 - Section
+                                        A</p>
+                                    <p style="color: var(--gray);">Student ID: RPS2024001</p>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Date of Birth</h4>
+                                    <p style="font-size: 1.1rem;">January 15, 2009</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Blood Group</h4>
+                                    <p style="font-size: 1.1rem;">A+</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Religion</h4>
+                                    <p style="font-size: 1.1rem;">Islam</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Email</h4>
+                                    <p style="font-size: 1.1rem;">ahmed.hassan@rps.edu</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Phone</h4>
+                                    <p style="font-size: 1.1rem;">+880 1234-567890</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Address</h4>
+                                    <p style="font-size: 1.1rem;">Narayanganj, Dhaka</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 1rem;">Parent Information</h3>
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Father's Name</h4>
+                                    <p style="font-size: 1.1rem;">Mohammad Hassan</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Father's Phone</h4>
+                                    <p style="font-size: 1.1rem;">+880 1711-111111</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Mother's Name</h4>
+                                    <p style="font-size: 1.1rem;">Fatima Hassan</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--gray); margin-bottom: 0.5rem;">Mother's Phone</h4>
+                                    <p style="font-size: 1.1rem;">+880 1811-111111</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="student-attendance" style="display:none;">
+                        <div class="dashboard-header">
+                            <h2>My Attendance</h2>
+                            <button class="btn btn-primary" onclick="downloadAttendanceReport()">📥 Download
+                                Report</button>
+                        </div>
+
+                        <div class="result-card">
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                                <div
+                                    style="text-align: center; padding: 1.5rem; background: var(--light); border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: var(--primary);">95%</div>
+                                    <div style="color: var(--gray);">Overall Attendance</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 1.5rem; background: var(--light); border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: var(--secondary);">180</div>
+                                    <div style="color: var(--gray);">Present Days</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 1.5rem; background: var(--light); border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: #ef4444;">9</div>
+                                    <div style="color: var(--gray);">Absent Days</div>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-bottom: 1rem;">Monthly Attendance (November 2025)</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2025-11-01</td>
+                                        <td><span style="color: var(--secondary);">✅ Present</span></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-11-02</td>
+                                        <td><span style="color: var(--secondary);">✅ Present</span></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-11-05</td>
+                                        <td><span style="color: #ef4444;">❌ Absent</span></td>
+                                        <td>Medical Leave</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Floating Contact Card -->
+        <div class="contact-overlay">
+            <div class="contact-overlay-item">
+                <div class="contact-overlay-icon">📍</div>
+                <div class="contact-overlay-title">Address</div>
+                <div class="contact-overlay-text">Nabiganj, Bandar,<br>Narayanganj, Bangladesh</div>
+            </div>
+            <div class="contact-overlay-item">
+                <div class="contact-overlay-icon">📞</div>
+                <div class="contact-overlay-title">Phone Number</div>
+                <div class="contact-overlay-text">01713656668</div>
+            </div>
+            <div class="contact-overlay-item">
+                <div class="contact-overlay-icon">📧</div>
+                <div class="contact-overlay-title">Email Address</div>
+                <div class="contact-overlay-text">info@reazpublicschool.edu<br>admissions@reazpublicschool.edu</div>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Reaz Public School</h3>
+                <p style="color: rgba(255,255,255,0.7); margin-top: 1rem;">
+                    Empowering students with quality education since 1995. Building future leaders with excellence.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                    <li><a href="#" onclick="showPage('admission')">Admission</a></li>
+                    <li><a href="#" onclick="showPage('academic')">Academic</a></li>
+                    <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 Nabiganj, Bandar, Narayanganj, Bangladesh</li>
+                    <li>📞 01713656668</li>
+                    <li>✉️ info@reazpublicschool.edu</li>
+                    <li>🕐 8:00 AM - 4:00 PM</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="#" style="font-size: 1.5rem;">📘</a>
+                    <a href="#" style="font-size: 1.5rem;">📷</a>
+                    <a href="#" style="font-size: 1.5rem;">🐦</a>
+                    <a href="#" style="font-size: 1.5rem;">📹</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Reaz Public School. All rights reserved. | Designed with ❤️ for Education</p>
+        </div>
+    </footer>
+
+    <script>
+        // Results search data and helper functions
+        const sampleResults = {
+            'RPS2024001': {
+                '2024': {
+                    'Final Exam': {
+                        studentId: 'RPS2024001',
+                        name: 'Ahmed Hassan',
+                        class: '10',
+                        section: 'A',
+                        exam: 'Final Exam 2024',
+                        subjects: [
+                            { name: 'Mathematics', theory: 55, practical: 38, max: 100 },
+                            { name: 'Physics', theory: 52, practical: 36, max: 100 },
+                            { name: 'Chemistry', theory: 50, practical: 35, max: 100 },
+                            { name: 'Biology', theory: 48, practical: 34, max: 100 },
+                            { name: 'English', theory: 72, practical: 0, max: 100 },
+                            { name: 'Bangla', theory: 68, practical: 0, max: 100 },
+                            { name: 'ICT', theory: 40, practical: 0, max: 50 },
+                            { name: 'Religion', theory: 42, practical: 0, max: 50 }
+                        ]
+                    }
+                }
+            },
+            'RPS2024002': {
+                '2024': {
+                    'Mid-Term': {
+                        studentId: 'RPS2024002',
+                        name: 'Fatima Khan',
+                        class: '9',
+                        section: 'B',
+                        exam: 'Mid-Term 2024',
+                        subjects: [
+                            { name: 'Mathematics', theory: 40, practical: 0, max: 100 },
+                            { name: 'English', theory: 64, practical: 0, max: 100 },
+                            { name: 'Bangla', theory: 58, practical: 0, max: 100 },
+                            { name: 'Science', theory: 70, practical: 0, max: 100 }
+                        ]
+                    }
+                }
+            }
+        };
+
+        function searchResult() {
+            const id = document.getElementById('resStudentId').value.trim();
+            const year = document.getElementById('resYear').value;
+            const exam = document.getElementById('resExam').value;
+            const out = document.getElementById('resultOutput');
+            if (!id) {
+                alert('Please enter Student ID');
+                return;
+            }
+
+            const studentEntry = sampleResults[id] && sampleResults[id][year] && sampleResults[id][year][exam];
+            if (!studentEntry) {
+                out.innerHTML = '<div class="result-card"><p style="color:var(--gray)">Result not found. Please check ID, Year and Exam.</p></div>';
+                return;
+            }
+
+            renderResult(studentEntry);
+        }
+
+        function clearResult() {
+            document.getElementById('resStudentId').value = '';
+            document.getElementById('resultOutput').innerHTML = '';
+        }
+
+        function gradeForPercent(p) {
+            if (p >= 80) return { grade: 'A+', class: 'grade-a-plus' };
+            if (p >= 70) return { grade: 'A', class: 'grade-a' };
+            if (p >= 60) return { grade: 'A-', class: 'grade-a' };
+            if (p >= 50) return { grade: 'B', class: 'grade-b' };
+            if (p >= 40) return { grade: 'C', class: 'grade-c' };
+            return { grade: 'F', class: 'grade-c' };
+        }
+
+        function renderResult(data) {
+            const out = document.getElementById('resultOutput');
+            let totalObtained = 0;
+            let totalMax = 0;
+
+            const rows = data.subjects.map(s => {
+                const obtained = (s.theory || 0) + (s.practical || 0);
+                totalObtained += obtained;
+                totalMax += s.max;
+                const percent = (obtained / s.max) * 100;
+                const g = gradeForPercent(percent);
+                return `<tr>
+                    <td><strong>${s.name}</strong></td>
+                    <td>${s.theory || 0}</td>
+                    <td>${s.practical || '-'}</td>
+                    <td>${obtained}/${s.max}</td>
+                    <td><span class="grade-badge ${g.class}">${g.grade}</span></td>
+                </tr>`;
+            }).join('');
+
+            const percentage = totalMax ? ((totalObtained / totalMax) * 100) : 0;
+            const overallGrade = gradeForPercent(percentage).grade;
+
+            const resultHtml = `
+                <div class="result-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <div>
+                            <h3>${data.exam}</h3>
+                            <p style="color:var(--gray)">${data.name} | ID: ${data.studentId} | Class ${data.class} - Section ${data.section}</p>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-size:2rem; font-weight:bold; color:var(--primary)">${percentage.toFixed(2)}%</div>
+                            <div style="color:var(--gray)">Overall: ${overallGrade}</div>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Theory</th>
+                                    <th>Practical</th>
+                                    <th>Total</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${rows}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top:1.5rem; display:flex; gap:1rem; justify-content:flex-end;">
+                        <button class="btn btn-secondary" onclick="printResult('${data.studentId}','${data.exam.replace(/'/g, '')}')">Print</button>
+                        <button class="btn btn-primary" onclick="downloadResult('${data.studentId}','${data.exam.replace(/\s+/g, '_')}')">Download</button>
+                    </div>
+                </div>`;
+
+            out.innerHTML = resultHtml;
+        }
+
+        function buildResultFullHtml(id, examKey) {
+            const idVal = id;
+            const year = document.getElementById('resYear').value;
+            const exam = document.getElementById('resExam').value;
+            const data = sampleResults[idVal] && sampleResults[idVal][year] && sampleResults[idVal][year][exam];
+            if (!data) return '';
+
+            let totalObtained = 0;
+            let totalMax = 0;
+            const rows = data.subjects.map(s => {
+                const obtained = (s.theory || 0) + (s.practical || 0);
+                totalObtained += obtained;
+                totalMax += s.max;
+                const percent = (obtained / s.max) * 100;
+                const g = gradeForPercent(percent);
+                return `<tr><td><strong>${s.name}</strong></td><td>${s.theory || 0}</td><td>${s.practical || '-'}</td><td>${obtained}/${s.max}</td><td>${g.grade}</td></tr>`;
+            }).join('');
+            const percentage = totalMax ? ((totalObtained / totalMax) * 100) : 0;
+
+            const styles = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
+
+            return `<!doctype html><html><head><meta charset="utf-8"><title>Result - ${data.studentId}</title><style>${styles} body{padding:20px;}</style></head><body><h2>${data.exam}</h2><p>${data.name} | ID: ${data.studentId} | Class ${data.class} - Section ${data.section}</p><table border="0" style="width:100%;border-collapse:collapse;"><thead><tr><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Subject</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Theory</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Practical</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Total</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Grade</th></tr></thead><tbody>${rows}</tbody></table><div style="margin-top:1rem;"><strong>Total:</strong> ${totalObtained}/${totalMax} &nbsp;&nbsp; <strong>Percentage:</strong> ${percentage.toFixed(2)}% </div></body></html>`;
+        }
+
+        function printResult(id) {
+            const html = buildResultFullHtml(id);
+            if (!html) { alert('Nothing to print'); return; }
+            const w = window.open('', '_blank');
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+            w.focus();
+            setTimeout(() => { w.print(); }, 500);
+        }
+
+        function downloadResult(id, examKey) {
+            const html = buildResultFullHtml(id);
+            if (!html) { alert('Nothing to download'); return; }
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const year = document.getElementById('resYear').value;
+            a.download = `${id}_${examKey}_${year}.html`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+        }
+
+        // Update syllabus/routine download links based on selected class
+        function mapClassValueToSlug(val) {
+            // keep values safe for filenames
+            if (!val || val === 'all') return 'all';
+            return val.replace(/\s+/g, '-').toLowerCase();
+        }
+
+        function updateSyllabusLinks() {
+            const sel = document.getElementById('syllabusClassSelect');
+            if (!sel) return;
+            const v = sel.value;
+            const slug = mapClassValueToSlug(v);
+            const preview = document.getElementById('syllabusPreview');
+            const download = document.getElementById('syllabusDownload');
+            if (!preview || !download) return;
+            let href;
+            if (slug === 'all') {
+                href = 'docs/syllabus.pdf';
+            } else {
+                href = `docs/syllabus-${slug}.pdf`;
+            }
+            // Preview should open in a new tab (no forced download)
+            preview.href = href;
+            preview.removeAttribute('download');
+            preview.target = '_blank';
+
+            // Download should force download and set a friendly filename
+            download.href = href;
+            const filename = href.split('/').pop();
+            download.setAttribute('download', filename);
+        }
+
+        function updateRoutineLinks() {
+            // Prefer an explicit routine selector, but fall back to the syllabus selector
+            const sel = document.getElementById('routineClassSelect') || document.getElementById('syllabusClassSelect');
+            if (!sel) return;
+            const v = sel.value;
+            const slug = mapClassValueToSlug(v);
+            const preview = document.getElementById('routinePreview');
+            const download = document.getElementById('routineDownload');
+            if (!preview || !download) return;
+            let href;
+            if (slug === 'all') {
+                href = 'docs/class-routine.pdf';
+            } else {
+                href = `docs/routine-${slug}.pdf`;
+            }
+            preview.href = href;
+            preview.removeAttribute('download');
+            preview.target = '_blank';
+
+            download.href = href;
+            const filename = href.split('/').pop();
+            download.setAttribute('download', filename);
+        }
+
+        // Attach listeners and initialize links
+        document.addEventListener('DOMContentLoaded', function () {
+            // existing init log
+            console.log('Reaz Public School System Loaded');
+            // initialize syllabus/routine selectors
+            const sSel = document.getElementById('syllabusClassSelect');
+            const rSel = document.getElementById('routineClassSelect');
+            if (sSel) sSel.addEventListener('change', updateSyllabusLinks);
+            if (rSel) rSel.addEventListener('change', updateRoutineLinks);
+            updateSyllabusLinks();
+            updateRoutineLinks();
+        });
+
+        // Page Navigation
+        function showPage(page, evt) {
+            // Hide all pages
+            document.querySelectorAll('#mainContent > div').forEach(div => {
+                div.style.display = 'none';
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(page + 'Page');
+            if (targetPage) targetPage.style.display = 'block';
+
+            // Update active nav (safe fallback if event isn't provided)
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`nav a[onclick="showPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
+
+            // Close mobile menu if open
+            const mn = document.getElementById('mainNav'); if (mn) mn.classList.remove('mobile-open');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Login Modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        // Admission Modal
+        function openAdmissionForm() {
+            document.getElementById('admissionModal').classList.add('active');
+        }
+
+        function closeAdmissionForm() {
+            document.getElementById('admissionModal').classList.remove('active');
+        }
+
+        function submitAdmission() {
+            const studentName = document.getElementById('studentName').value;
+            if (!studentName) {
+                alert('❌ Please fill in the student name!');
+                return;
+            }
+
+            alert('✅ Admission application submitted successfully! You will receive a confirmation email shortly.');
+            closeAdmissionForm();
+
+            // Reset form
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentDOB').value = '';
+            document.getElementById('studentClass').value = 'Play Group';
+            document.getElementById('fatherName').value = '';
+            document.getElementById('motherName').value = '';
+            document.getElementById('contactNumber').value = '';
+            document.getElementById('parentEmail').value = '';
+        }
+
+        // Contact Form
+        function sendMessage() {
+            alert('✅ Your message has been sent successfully! We will get back to you soon.');
+        }
+
+        // Open Academic Resources section (located on Home page)
+        function openResources(evt) {
+            // show home page then scroll to resources section
+            showPage('home', evt);
+            setTimeout(() => {
+                const el = document.getElementById('resourcesSection');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+
+        // Open Check Exam Results section (located on Home page)
+        function openResults(evt) {
+            showPage('home', evt);
+            setTimeout(() => {
+                const el = document.getElementById('resultSearchSection');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+
+        /* LMS data and functions */
+        const LMS_COURSES = {
+            course1: {
+                id: 'course1',
+                title: 'Intro to Sports & Fitness',
+                modules: ['Health & Safety', 'Warm-up Exercises', 'Basic Team Sports', 'Nutrition Basics'],
+                quiz: [
+                    { q: 'Which activity is a warm-up?', options: ['Sprinting full speed', 'Stretching', 'Sleeping'], a: 1 },
+                    { q: 'Which is important for good fitness?', options: ['Balanced diet', 'Skipping meals', 'Only video games'], a: 0 }
+                ]
+            },
+            course2: {
+                id: 'course2',
+                title: 'Mathematics Fundamentals',
+                modules: ['Numbers & Operations', 'Basic Geometry', 'Problem Solving'],
+                quiz: [
+                    { q: 'What is 7 + 5?', options: ['11', '12', '13'], a: 1 },
+                    { q: 'A triangle has how many sides?', options: ['2', '3', '4'], a: 1 }
+                ]
+            },
+            course3: {
+                id: 'course3',
+                title: 'Introduction to ICT',
+                modules: ['Computer Basics', 'Internet Safety', 'Using Word Processors'],
+                quiz: [
+                    { q: 'Which is used to browse the web?', options: ['Browser', 'Calculator', 'Paint'], a: 0 },
+                    { q: 'You should share passwords?', options: ['Yes', 'No'], a: 1 }
+                ]
+            }
+        };
+
+        function openCourseModal(courseId) {
+            const course = LMS_COURSES[courseId];
+            if (!course) return alert('Course not found');
+            document.getElementById('courseModalTitle').innerText = course.title + ' — Modules';
+            const list = document.getElementById('courseModuleList');
+            list.innerHTML = '';
+            course.modules.forEach((m, idx) => {
+                const li = document.createElement('li');
+                li.textContent = (idx + 1) + '. ' + m;
+                list.appendChild(li);
+            });
+            document.getElementById('courseModal').classList.add('active');
+        }
+
+        function closeCourseModal() { document.getElementById('courseModal').classList.remove('active'); }
+
+        // Quiz handling
+        let QUIZ_STATE = null;
+
+        function openQuizModal(courseId) {
+            const course = LMS_COURSES[courseId];
+            if (!course) return alert('Course not found');
+            QUIZ_STATE = { courseId: courseId, index: 0, answers: [] };
+            document.getElementById('quizTitle').innerText = course.title + ' — Quiz';
+            renderQuizQuestion();
+            document.getElementById('quizModal').classList.add('active');
+        }
+
+        function closeQuizModal() { document.getElementById('quizModal').classList.remove('active'); QUIZ_STATE = null; }
+
+        function renderQuizQuestion() {
+            if (!QUIZ_STATE) return;
+            const course = LMS_COURSES[QUIZ_STATE.courseId];
+            const qObj = course.quiz[QUIZ_STATE.index];
+            const container = document.getElementById('quizContent');
+            container.innerHTML = '';
+            const qEl = document.createElement('div'); qEl.style.marginBottom = '0.75rem'; qEl.innerHTML = '<strong>Q' + (QUIZ_STATE.index + 1) + '.</strong> ' + qObj.q; container.appendChild(qEl);
+            qObj.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'lms-quiz-option';
+                btn.textContent = opt;
+                btn.onclick = () => { QUIZ_STATE.answers[QUIZ_STATE.index] = i; highlightSelected(i); };
+                container.appendChild(btn);
+            });
+            // show selected if exists
+            highlightSelected(QUIZ_STATE.answers[QUIZ_STATE.index]);
+            document.getElementById('quizNextBtn').innerText = (QUIZ_STATE.index === course.quiz.length - 1) ? 'Finish' : 'Next';
+        }
+
+        function highlightSelected(selectedIdx) {
+            const opts = Array.from(document.querySelectorAll('#quizContent .lms-quiz-option'));
+            opts.forEach((b, i) => { b.style.borderColor = (i === selectedIdx ? 'var(--primary)' : '#e2e8f0'); b.style.background = (i === selectedIdx ? 'rgba(37,99,235,0.06)' : 'white'); });
+        }
+
+        function nextQuestion() {
+            if (!QUIZ_STATE) return;
+            const course = LMS_COURSES[QUIZ_STATE.courseId];
+            // ensure answer selected before moving on
+            if (typeof QUIZ_STATE.answers[QUIZ_STATE.index] === 'undefined') { alert('Please select an option'); return; }
+            if (QUIZ_STATE.index === course.quiz.length - 1) {
+                // finish and score
+                let score = 0;
+                course.quiz.forEach((q, i) => { if (q.a === QUIZ_STATE.answers[i]) score++; });
+                const pct = Math.round((score / course.quiz.length) * 100);
+                document.getElementById('quizContent').innerHTML = `<div style="text-align:center;"><h3>Your Score: ${score}/${course.quiz.length}</h3><p style="color:var(--gray)">${pct}%</p></div>`;
+                document.getElementById('quizNextBtn').innerText = 'Close';
+                return;
+            }
+            QUIZ_STATE.index++;
+            renderQuizQuestion();
+        }
+
+        function prevQuestion() { if (!QUIZ_STATE) return; if (QUIZ_STATE.index > 0) { QUIZ_STATE.index--; renderQuizQuestion(); } }
+
+        // Login Handler
+        function handleLogin() {
+            const role = document.getElementById('loginRole').value;
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Simple validation (in real app, this would be server-side)
+            const credentials = {
+                admin: { email: 'admin@rps.edu', password: 'admin123' },
+                teacher: { email: 'teacher@rps.edu', password: 'teacher123' },
+                student: { email: 'student@rps.edu', password: 'student123' },
+                staff: { email: 'staff@rps.edu', password: 'staff123' }
+            };
+
+            if (credentials[role] && email === credentials[role].email && password === credentials[role].password) {
+                // Hide public pages and login modal
+                document.getElementById('mainContent').style.display = 'none';
+                document.querySelector('header').style.display = 'none';
+                document.querySelector('footer').style.display = 'none';
+                closeLoginModal();
+
+                // Show dashboard
+                document.getElementById('dashboardArea').style.display = 'block';
+                document.getElementById(role + 'Dashboard').style.display = 'block';
+
+                // Reset login form
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+            } else {
+                alert('❌ Invalid credentials! Please check your email and password.');
+            }
+        }
+
+        // Logout
+        function logout() {
+            // Hide all dashboards
+            document.getElementById('dashboardArea').style.display = 'none';
+            document.querySelectorAll('#dashboardArea > div').forEach(div => {
+                div.style.display = 'none';
+            });
+
+            // Show public pages
+            document.getElementById('mainContent').style.display = 'block';
+            document.querySelector('header').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+
+            // Reset to home page
+            showPageDirect('home');
+
+            alert('✅ Logged out successfully!');
+        }
+
+        function showPageDirect(page) {
+            document.querySelectorAll('#mainContent > div').forEach(div => {
+                div.style.display = 'none';
+            });
+            document.getElementById(page + 'Page').style.display = 'block';
+
+            // Update active nav
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('active');
+            });
+            document.querySelector(`nav a[onclick="showPage('${page}')"]`).classList.add('active');
+        }
+
+        // Dashboard Page Navigation
+        function showDashboardPage(page, evt) {
+            // Hide all dashboard content sections
+            document.querySelectorAll('.dashboard-content > div').forEach(div => div.style.display = 'none');
+
+            // Show selected section
+            const el = document.getElementById(page); if (el) el.style.display = 'block';
+
+            // Update active menu
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`.sidebar-menu a[onclick="showDashboardPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+
+        function showTeacherPage(page, evt) {
+            document.querySelectorAll('#teacherDashboard .dashboard-content > div').forEach(div => div.style.display = 'none');
+            const el = document.getElementById(page); if (el) el.style.display = 'block';
+            document.querySelectorAll('#teacherDashboard .sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`#teacherDashboard .sidebar-menu a[onclick="showTeacherPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+
+        function showStudentPage(page, evt) {
+            document.querySelectorAll('#studentDashboard .dashboard-content > div').forEach(div => div.style.display = 'none');
+            const el = document.getElementById(page); if (el) el.style.display = 'block';
+            document.querySelectorAll('#studentDashboard .sidebar-menu a').forEach(a => a.classList.remove('active'));
+            const activeLink = evt && evt.target ? evt.target : document.querySelector(`#studentDashboard .sidebar-menu a[onclick="showStudentPage('${page}')"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('mainNav').classList.toggle('mobile-open');
+        }
+
+        // Calculate Total Marks and Grade
+        function calculateTotal(input) {
+            const row = input.closest('tr');
+            const theory = parseFloat(row.cells[2].querySelector('input').value) || 0;
+            const practical = parseFloat(row.cells[3].querySelector('input').value) || 0;
+            const total = theory + practical;
+
+            row.cells[4].innerHTML = '<strong>' + total + '</strong>';
+
+            // Calculate grade
+            let grade = '';
+            let gradeClass = '';
+            if (total >= 80) {
+                grade = 'A+';
+                gradeClass = 'grade-a-plus';
+            } else if (total >= 70) {
+                grade = 'A';
+                gradeClass = 'grade-a';
+            } else if (total >= 60) {
+                grade = 'A-';
+                gradeClass = 'grade-a';
+            } else if (total >= 50) {
+                grade = 'B';
+                gradeClass = 'grade-b';
+            } else if (total >= 40) {
+                grade = 'C';
+                gradeClass = 'grade-c';
+            } else {
+                grade = 'F';
+                gradeClass = 'grade-c';
+            }
+
+            row.cells[5].innerHTML = '<span class="grade-badge ' + gradeClass + '">' + grade + '</span>';
+            row.cells[6].innerHTML = '⏳ Pending';
+        }
+
+        // Admin Functions
+        function addNewStudent() {
+            alert('📝 Add New Student feature would open a form here.');
+        }
+
+        function viewStudent(id) {
+            alert('👁️ Viewing student details for ID: ' + id);
+        }
+
+        function editStudent(id) {
+            alert('✏️ Editing student with ID: ' + id);
+        }
+
+        function deleteStudent(id) {
+            if (confirm('Are you sure you want to delete this student?')) {
+                alert('🗑️ Student with ID ' + id + ' has been deleted.');
+            }
+        }
+
+        function generateNewResult() {
+            alert('📊 Generating new result sheet...');
+        }
+
+        function configureGradingScale() {
+            alert('⚙️ Configuring grading scale...');
+        }
+
+        function viewAllResults() {
+            alert('📋 Viewing all results...');
+        }
+
+        function viewResult(exam) {
+            alert('👁️ Viewing result for: ' + exam);
+        }
+
+        function editResult(exam) {
+            alert('✏️ Editing result for: ' + exam);
+        }
+
+        function downloadResult(exam) {
+            alert('📥 Downloading result for: ' + exam);
+        }
+
+        function viewApplication(appId) {
+            alert('👁️ Viewing application: ' + appId);
+        }
+
+        function processApplication(appId) {
+            alert('✅ Processing application: ' + appId);
+        }
+
+        function rejectApplication(appId) {
+            if (confirm('Are you sure you want to reject this application?')) {
+                alert('❌ Application ' + appId + ' has been rejected.');
+            }
+        }
+
+        // Teacher Functions
+        function saveAllMarks() {
+            alert('✅ All marks have been saved successfully!');
+            // Update status for all rows
+            document.querySelectorAll('#teacher-marks table tbody tr').forEach(row => {
+                row.cells[6].innerHTML = '✅ Saved';
+            });
+        }
+
+        function saveAttendance() {
+            alert('✅ Attendance has been saved successfully!');
+        }
+
+        // Student Functions
+        function downloadMarksheet() {
+            alert('📥 Downloading your marksheet...');
+        }
+
+        function editStudentProfile() {
+            alert('✏️ Edit profile feature would open here.');
+        }
+
+        function downloadAttendanceReport() {
+            alert('📥 Downloading attendance report...');
+        }
+
+        // Close modals on outside click
+        window.onclick = function (event) {
+            const loginModal = document.getElementById('loginModal');
+            const admissionModal = document.getElementById('admissionModal');
+
+            if (event.target === loginModal) {
+                closeLoginModal();
+            }
+            if (event.target === admissionModal) {
+                closeAdmissionForm();
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            // Any initialization code can go here
+            console.log('Reaz Public School System Loaded');
+        });
+    </script>
+</body>
+
+</html>
