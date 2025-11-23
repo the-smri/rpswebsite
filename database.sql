@@ -1,6 +1,5 @@
-CREATE DATABASE reaz_public_school;
+CREATE DATABASE IF NOT EXISTS reaz_public_school;
 USE reaz_public_school;
-
 -- Users table
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -13,7 +12,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('active', 'inactive') DEFAULT 'active'
 );
-
 -- Students table
 CREATE TABLE students (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +30,6 @@ CREATE TABLE students (
     mother_phone VARCHAR(20),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
 -- Teachers table
 CREATE TABLE teachers (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,10 +38,9 @@ CREATE TABLE teachers (
     department VARCHAR(100),
     qualification TEXT,
     joining_date DATE,
-    salary DECIMAL(10,2),
+    salary DECIMAL(10, 2),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
 -- Subjects table
 CREATE TABLE subjects (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -52,7 +48,6 @@ CREATE TABLE subjects (
     code VARCHAR(20) UNIQUE NOT NULL,
     class VARCHAR(20) NOT NULL
 );
-
 -- Results table
 CREATE TABLE results (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -60,16 +55,15 @@ CREATE TABLE results (
     exam_type VARCHAR(100) NOT NULL,
     exam_year YEAR NOT NULL,
     subject_id INT,
-    theory_marks DECIMAL(5,2),
-    practical_marks DECIMAL(5,2),
-    total_marks DECIMAL(5,2),
+    theory_marks DECIMAL(5, 2),
+    practical_marks DECIMAL(5, 2),
+    total_marks DECIMAL(5, 2),
     grade VARCHAR(5),
-    gpa DECIMAL(3,2),
+    gpa DECIMAL(3, 2),
     published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
 );
-
 -- Attendance table
 CREATE TABLE attendance (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -81,9 +75,9 @@ CREATE TABLE attendance (
     remarks TEXT,
     recorded_by INT,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-    FOREIGN KEY (recorded_by) REFERENCES teachers(id) ON DELETE SET NULL
+    FOREIGN KEY (recorded_by) REFERENCES teachers(id) ON DELETE
+    SET NULL
 );
-
 -- Admissions table
 CREATE TABLE admissions (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -98,7 +92,6 @@ CREATE TABLE admissions (
     status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 -- Notices table
 CREATE TABLE notices (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -109,15 +102,32 @@ CREATE TABLE notices (
     expiry_date DATE,
     created_by INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE
+    SET NULL
 );
-
 -- Insert default admin user
-INSERT INTO users (username, email, password, role, full_name) VALUES 
-('admin', 'admin@rps.edu', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'System Administrator'),
-('teacher', 'teacher@rps.edu', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'teacher', 'Demo Teacher'),
-('student', 'student@rps.edu', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'student', 'Demo Student');
-
+INSERT INTO users (username, email, password, role, full_name)
+VALUES (
+        'admin',
+        'admin@rps.edu',
+        '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        'admin',
+        'System Administrator'
+    ),
+    (
+        'teacher',
+        'teacher@rps.edu',
+        '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        'teacher',
+        'Demo Teacher'
+    ),
+    (
+        'student',
+        'student@rps.edu',
+        '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        'student',
+        'Demo Student'
+    );
 -- Insert sample student
-INSERT INTO students (user_id, student_id, class, section, roll_number) VALUES 
-(3, 'RPS2024001', '10', 'A', 1);
+INSERT INTO students (user_id, student_id, class, section, roll_number)
+VALUES (3, 'RPS2024001', '10', 'A', 1);

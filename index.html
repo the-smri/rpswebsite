@@ -1341,9 +1341,9 @@
                         </div>
                         <div
                             style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
-                            <a id="routinePreview" href="docs/class-routine.pdf" download class="btn"
+                            <a id="routinePreview" href="docs/routine.pdf" download class="btn"
                                 style="background:rgba(255,255,255,0.15); color:white; border-radius:10px; padding:0.5rem 0.9rem; text-decoration:none;">Preview</a>
-                            <a id="routineDownload" href="docs/class-routine.pdf" download
+                            <a id="routineDownload" href="docs/routine.pdf" download
                                 class="btn btn-primary">Download</a>
                         </div>
                     </div>
@@ -1414,8 +1414,9 @@
                         <div class="form-group" style="width:220px;">
                             <label>Exam</label>
                             <select id="resExam">
-                                <option>Final Exam</option>
-                                <option>Mid-Term</option>
+                                <option>First Term</option>
+                                <option>Second Term</option>
+                                <option>Annual Examination</option>
                             </select>
                         </div>
 
@@ -1465,7 +1466,8 @@
                                     alt="Classroom">
                                 <div class="social-overlay">
                                     <div class="social-icon">🐦</div>
-                                    <div class="social-text">Interactive learning sessions in our smart classrooms. 📚💡
+                                    <div class="social-text">Interactive learning sessions in our smart classrooms.
+                                        📚💡
                                         #Education #SmartLearning</div>
                                 </div>
                             </div>
@@ -1476,7 +1478,8 @@
                                     alt="Library">
                                 <div class="social-overlay">
                                     <div class="social-icon">📹</div>
-                                    <div class="social-text">Our library is now open with 1000+ new books! 📖✨ #Reading
+                                    <div class="social-text">Our library is now open with 1000+ new books! 📖✨
+                                        #Reading
                                         #Library</div>
                                 </div>
                             </div>
@@ -1622,7 +1625,8 @@
                 <h2 class="section-title">About Reaz Public School</h2>
                 <div class="feature-card">
                     <h3>Our Mission</h3>
-                    <p>To provide quality education that empowers students to become responsible global citizens,
+                    <p>To provide quality education that empowers students to become responsible global
+                        citizens,
                         critical thinkers, and lifelong learners.</p>
                 </div>
                 <div class="feature-card" style="margin-top: 2rem;">
@@ -1632,8 +1636,10 @@
                 </div>
                 <div class="feature-card" style="margin-top: 2rem;">
                     <h3>Principal's Message</h3>
-                    <p>Welcome to Reaz Public School. We are committed to nurturing young minds and building the leaders
-                        of tomorrow. Our dedicated faculty and staff work tirelessly to create a learning environment
+                    <p>Welcome to Reaz Public School. We are committed to nurturing young minds and building the
+                        leaders
+                        of tomorrow. Our dedicated faculty and staff work tirelessly to create a learning
+                        environment
                         that fosters creativity, critical thinking, and character development.</p>
                     <p style="margin-top: 1rem;"><strong>- Dr. Rahman Ahmed</strong><br>Principal, RPS</p>
                 </div>
@@ -1703,7 +1709,8 @@
                                     📘</div>
                                 <div>
                                     <h3 style="margin:0;">Academic Resources & Documents</h3>
-                                    <p style="margin:0; color:var(--gray);">Syllabi, routines, calendars and more.</p>
+                                    <p style="margin:0; color:var(--gray);">Syllabi, routines, calendars and
+                                        more.</p>
                                 </div>
                             </div>
                             <div
@@ -1719,12 +1726,14 @@
                                     📝</div>
                                 <div>
                                     <h3 style="margin:0;">Check Exam Results</h3>
-                                    <p style="margin:0; color:var(--gray);">Search by Student ID, Year and Exam.</p>
+                                    <p style="margin:0; color:var(--gray);">Search by Student ID, Year and Exam.
+                                    </p>
                                 </div>
                             </div>
                             <div
                                 style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end; margin-left:auto;">
-                                <button class="btn btn-primary" onclick="openResults(event)">Check Results</button>
+                                <button class="btn btn-primary" onclick="openResults(event)">Check
+                                    Results</button>
                             </div>
                         </div>
                     </div>
@@ -1903,7 +1912,8 @@
                 <input type="email" placeholder="your@email.com" id="parentEmail">
             </div>
 
-            <button class="btn btn-primary" style="width: 100%;" onclick="submitAdmission()">Submit Application</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="submitAdmission()">Submit
+                Application</button>
         </div>
     </div>
 
@@ -2101,23 +2111,28 @@
                     <div id="admin-results" style="display:none;">
                         <div class="dashboard-header">
                             <h2>Result Management</h2>
-                            <button class="btn btn-primary" onclick="generateNewResult()">+ Generate New Result</button>
+                            <button class="btn btn-primary" onclick="generateNewResult()">+ Generate New
+                                Result</button>
                         </div>
 
                         <div class="dashboard-cards">
                             <div class="dashboard-card">
                                 <h3>Result Generator</h3>
-                                <p style="color: var(--gray); margin: 1rem 0;">Automatically calculate grades, GPA, and
+                                <p style="color: var(--gray); margin: 1rem 0;">Automatically calculate grades, GPA,
+                                    and
                                     rankings</p>
-                                <button class="btn btn-secondary" onclick="configureGradingScale()">Configure Grading
+                                <button class="btn btn-secondary" onclick="configureGradingScale()">Configure
+                                    Grading
                                     Scale</button>
                             </div>
 
                             <div class="dashboard-card">
                                 <h3>Published Results</h3>
-                                <p style="color: var(--gray); margin: 1rem 0;">View and manage published exam results
+                                <p style="color: var(--gray); margin: 1rem 0;">View and manage published exam
+                                    results
                                 </p>
-                                <button class="btn btn-secondary" onclick="viewAllResults()">View All Results</button>
+                                <button class="btn btn-secondary" onclick="viewAllResults()">View All
+                                    Results</button>
                             </div>
                         </div>
 
@@ -2437,7 +2452,8 @@
                                 style="margin-top: 2rem; padding: 1.5rem; background: var(--light); border-radius: 8px;">
                                 <h4>Grading Scale</h4>
                                 <p style="margin-top: 0.5rem; color: var(--gray);">
-                                    A+ (80-100) | A (70-79) | A- (60-69) | B (50-59) | C (40-49) | D (33-39) | F (0-32)
+                                    A+ (80-100) | A (70-79) | A- (60-69) | B (50-59) | C (40-49) | D (33-39) | F
+                                    (0-32)
                                 </p>
                             </div>
                         </div>
@@ -2516,7 +2532,8 @@
                         style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.2);">
                         Student Panel</h3>
                     <ul class="sidebar-menu">
-                        <li><a href="#" class="active" onclick="showStudentPage('student-overview')">📊 Dashboard</a>
+                        <li><a href="#" class="active" onclick="showStudentPage('student-overview')">📊
+                                Dashboard</a>
                         </li>
                         <li><a href="#" onclick="showStudentPage('student-profile')">👤 My Profile</a></li>
                         <li><a href="#" onclick="showStudentPage('student-results')">📝 Results</a></li>
@@ -2582,19 +2599,22 @@
                                 <div
                                     style="text-align: center; padding: 1rem; background: var(--light); border-radius: 8px;">
                                     <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">6</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">6
+                                    </div>
                                     <div style="color: var(--gray);">A+ Grades</div>
                                 </div>
                                 <div
                                     style="text-align: center; padding: 1rem; background: var(--light); border-radius: 8px;">
                                     <div style="font-size: 2rem; margin-bottom: 0.5rem;">📈</div>
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">92%</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">92%
+                                    </div>
                                     <div style="color: var(--gray);">Average</div>
                                 </div>
                                 <div
                                     style="text-align: center; padding: 1rem; background: var(--light); border-radius: 8px;">
                                     <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">8</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">8
+                                    </div>
                                     <div style="color: var(--gray);">Subjects</div>
                                 </div>
                             </div>
@@ -2604,7 +2624,8 @@
                     <div id="student-results" style="display:none;">
                         <div class="dashboard-header">
                             <h2>My Results</h2>
-                            <button class="btn btn-primary" onclick="downloadMarksheet()">📥 Download Marksheet</button>
+                            <button class="btn btn-primary" onclick="downloadMarksheet()">📥 Download
+                                Marksheet</button>
                         </div>
 
                         <div class="result-card">
@@ -2615,7 +2636,8 @@
                                     <p style="color: var(--gray);">Class 10 - Section A</p>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">4.85</div>
+                                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">4.85
+                                    </div>
                                     <div style="color: var(--gray);">Overall GPA</div>
                                 </div>
                             </div>
@@ -2710,19 +2732,22 @@
                                 <div
                                     style="background: var(--light); padding: 1.5rem; border-radius: 8px; text-align: center;">
                                     <div style="color: var(--gray); margin-bottom: 0.5rem;">Percentage</div>
-                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">87.69%</div>
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">87.69%
+                                    </div>
                                 </div>
                                 <div
                                     style="background: var(--light); padding: 1.5rem; border-radius: 8px; text-align: center;">
                                     <div style="color: var(--gray); margin-bottom: 0.5rem;">Class Position</div>
-                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">2nd</div>
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">2nd
+                                    </div>
                                 </div>
                             </div>
 
                             <div
                                 style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%); border-radius: 8px; color: white; text-align: center;">
                                 <div style="font-size: 1.5rem; font-weight: bold;">🎉 Excellent Performance!</div>
-                                <p style="margin-top: 0.5rem; opacity: 0.9;">You have achieved outstanding results. Keep
+                                <p style="margin-top: 0.5rem; opacity: 0.9;">You have achieved outstanding results.
+                                    Keep
                                     up the great work!</p>
                             </div>
                         </div>
@@ -2742,7 +2767,8 @@
                                 </div>
                                 <div>
                                     <h2>Ahmed Hassan</h2>
-                                    <p style="color: var(--gray); margin-top: 0.5rem;">Roll No: 001 | Class 10 - Section
+                                    <p style="color: var(--gray); margin-top: 0.5rem;">Roll No: 001 | Class 10 -
+                                        Section
                                         A</p>
                                     <p style="color: var(--gray);">Student ID: RPS2024001</p>
                                 </div>
@@ -2925,7 +2951,7 @@
             <p>&copy; 2025 Reaz Public School. All rights reserved. | Designed with ❤️ for Education</p>
         </div>
     </footer>
-
+    <script src="api-integration.js"></script>
     <script>
         // Results search data and helper functions
         const sampleResults = {

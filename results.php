@@ -10,9 +10,10 @@ class Results {
     }
 
     public function getResult($student_id, $year, $exam_type) {
-        $query = "SELECT r.*, s.name as subject_name, st.student_id as student_code, st.class, st.section 
+        $query = "SELECT r.*, s.name as subject_name, st.student_id as student_code, st.class, st.section, u.full_name as student_name
                   FROM " . $this->table_name . " r
                   JOIN students st ON r.student_id = st.id
+                  JOIN users u ON st.user_id = u.id
                   JOIN subjects s ON r.subject_id = s.id
                   WHERE st.student_id = :student_id AND r.exam_year = :year AND r.exam_type = :exam_type";
         
@@ -29,7 +30,7 @@ class Results {
             if (empty($student_info)) {
                 $student_info = array(
                     'student_id' => $row['student_code'],
-                    'name' => 'Ahmed Hassan', // You would join with users table in production
+                    'name' => $row['student_name'],
                     'class' => $row['class'],
                     'section' => $row['section'],
                     'exam' => $row['exam_type'] . ' ' . $row['exam_year']
