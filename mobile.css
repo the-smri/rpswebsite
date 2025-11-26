@@ -84,4 +84,11 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding-bottom: 1.5rem;
     }
+
+    /* About page responsive styles */
+    .about-image-wrapper {
+        float: none !important;
+        width: 100% !important;
+        margin: 0 0 1.5rem 0 !important;
+    }
 }
