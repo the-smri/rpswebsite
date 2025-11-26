@@ -1,0 +1,87 @@
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+    }
+
+    nav.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-dark);
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    /* Fix stat cards for mobile - stack vertically */
+    .stats {
+        grid-template-columns: 1fr !important;
+        margin-top: 2rem;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .stat-card {
+        padding: 2rem 1.5rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .stat-icon {
+        font-size: 3rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .contact-overlay {
+        flex-direction: column;
+        gap: 2rem;
+        border-radius: 20px;
+        margin-top: -4rem;
+        padding: 2rem;
+        width: 90%;
+    }
+
+    .contact-overlay-item {
+        width: 100%;
+    }
+
+    .contact-overlay-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 1.5rem;
+    }
+}
