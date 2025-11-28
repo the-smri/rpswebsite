@@ -619,12 +619,12 @@
         .contact-overlay {
             background: #002147;
             border-radius: 50px;
-            padding: 1.5rem 3rem;
+            padding: 1.5rem 0rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1150px;
-            margin: -5rem auto 3rem;
+            max-width: 1100px;
+            margin: -8rem auto 3rem;
             position: relative;
             z-index: 100;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
@@ -652,7 +652,7 @@
 
         .contact-overlay-title {
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -661,14 +661,14 @@
         .contact-overlay-text {
             font-size: 1rem;
             opacity: 0.9;
-            line-height: 1.4;
+            line-height: 1;
         }
 
         @media (max-width: 768px) {
             .contact-overlay {
                 flex-direction: column;
                 gap: 2rem;
-                border-radius: 20px;
+                border-radius: 15px;
                 margin-top: -4rem;
                 padding: 2rem;
                 width: 90%;
@@ -1190,6 +1190,143 @@
 
             100% {
                 transform: translateX(-50%);
+            }
+        }
+
+        /* Admission Page Styles */
+        .admission-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .admission-step {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .admission-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 176, 80, 0.2);
+            border-color: var(--primary);
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .admission-step h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .admission-step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Document Grid */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .doc-card {
+            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+            padding: 1rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 176, 80, 0.15);
+            border-color: var(--primary);
+        }
+
+        .doc-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .doc-card h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .doc-card p {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* Apply Banner */
+        .apply-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 2rem 2rem;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 176, 80, 0.3);
+            margin-top: 2rem;
+            color: white;
+        }
+
+        .apply-banner h3 {
+            color: white;
+            font-size: 1.6rem;
+        }
+
+        .apply-banner p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .apply-banner button {
+            flex-shrink: 0;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .apply-banner button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design for Admission Page */
+        @media (max-width: 768px) {
+            .admission-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .apply-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1rem;
+            }
+
+            .apply-banner button {
+                width: 100%;
             }
         }
     </style>
@@ -1834,32 +1971,81 @@
         </div>
 
         <!-- Admission Page -->
+
         <div id="admissionPage" style="display:none;">
             <section class="container">
                 <h2 class="section-title">Admission Information</h2>
-                <p class="section-subtitle">Join the RPS Family - Admissions Open for 2025-26</p>
+                <p class="section-subtitle">Join the RPS Family - Admissions Open for 2026 </p>
 
-                <div class="table-container">
-                    <h3 style="margin-bottom: 1rem;">Admission Process</h3>
-                    <ol style="padding-left: 2rem; line-height: 2;">
-                        <li>Fill out the online admission form</li>
-                        <li>Submit required documents</li>
-                        <li>Attend admission test (if applicable)</li>
-                        <li>Admission result announcement</li>
-                        <li>Complete admission formalities</li>
-                    </ol>
+                <!-- Admission Process Steps -->
+                <div class="admission-steps">
+                    <div class="admission-step">
+                        <div class="step-icon">📝</div>
+                        <h4>1. Apply Online</h4>
+                        <p>Fill out the online admission form with student details and parent information.</p>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-icon">📄</div>
+                        <h4>2. Submit Documents</h4>
+                        <p>Upload or submit required documents to the school office for verification.</p>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-icon">✍️</div>
+                        <h4>3. Admission Test</h4>
+                        <p>Attend the written admission test on the scheduled date (if applicable).</p>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-icon">📢</div>
+                        <h4>4. Result</h4>
+                        <p>Check the admission result announcement on our website or notice board.</p>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-icon">🎉</div>
+                        <h4>5. Final Admission</h4>
+                        <p>Complete payment and formalities to secure your seat at RPS.</p>
+                    </div>
+                </div>
 
-                    <h3 style="margin: 2rem 0 1rem;">Required Documents</h3>
-                    <ul style="padding-left: 2rem; line-height: 2;">
-                        <li>Birth certificate</li>
-                        <li>Previous school transfer certificate</li>
-                        <li>Mark sheets of previous classes</li>
-                        <li>Passport-size photographs (4 copies)</li>
-                        <li>Parent/Guardian ID card copy</li>
-                    </ul>
+                <!-- Required Documents -->
+                <h3 style="margin: 3rem 0 1.5rem; text-align: center; font-size: 2rem;">Required Documents</h3>
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <div class="doc-icon">🎂</div>
+                        <h4>Birth Certificate</h4>
+                        <p>Copy of digital birth certificate</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-icon">🏫</div>
+                        <h4>Transfer Certificate</h4>
+                        <p>TC from previous school (if applicable)</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-icon">📊</div>
+                        <h4>Mark Sheets</h4>
+                        <p>Copy of latest exam results</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-icon">📷</div>
+                        <h4>Photographs</h4>
+                        <p>4 copies of passport size photo</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-icon">🆔</div>
+                        <h4>NID Copy</h4>
+                        <p>Parent's National ID card copy</p>
+                    </div>
+                </div>
 
-                    <button class="btn btn-primary" style="margin-top: 2rem;" onclick="openAdmissionForm()">Apply
-                        Online</button>
+                <!-- Apply Online CTA Banner -->
+                <div class="apply-banner">
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Ready to Start Your Journey?</h3>
+                        <p style="margin: 0; opacity: 0.9;">Apply now for the upcoming academic session and become part
+                            of our growing family.</p>
+                    </div>
+                    <button class="btn btn-primary"
+                        style="background: white; color: var(--primary); font-size: 1.1rem; padding: 1rem 2.5rem;"
+                        onclick="openAdmissionForm()">Apply Online Now</button>
                 </div>
             </section>
         </div>
@@ -1872,17 +2058,17 @@
                     <div class="feature-card">
                         <div class="feature-icon">📍</div>
                         <h3>Address</h3>
-                        <p>Reaz Public School<br>Main Road, Narayanganj<br>Dhaka Division, Bangladesh</p>
+                        <p>Reaz Public School<br>Nabiganj, Bandar, Narayanganj<br>Dhaka, Bangladesh</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📞</div>
                         <h3>Phone</h3>
-                        <p>+880 1234-567890<br>+880 1234-567891</p>
+                        <p>+88 01713-656668<br>+880 1713-656668</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">✉️</div>
                         <h3>Email</h3>
-                        <p>info@reazpublicschool.edu<br>admission@reazpublicschool.edu</p>
+                        <p>info@rps.edu<br>admission@rps.edu</p>
                     </div>
                 </div>
                 <div class="table-container" style="margin-top: 2rem;">
@@ -3183,7 +3369,7 @@
                 <div class="contact-overlay-icon">📧</div>
                 <div class="contact-overlay-title">Email Address</div>
                 <div class="contact-overlay-text">
-                    info@reazpublicschool.edu<br>admissions@reazpublicschool.edu</div>
+                    info@rps.edu<br>admissions@rps.edu</div>
             </div>
         </div>
         <div class="footer-content">
@@ -3210,7 +3396,7 @@
                 <ul>
                     <li>📍 Nabiganj, Bandar, Narayanganj, Bangladesh</li>
                     <li>📞 01713656668</li>
-                    <li>✉️ info@reazpublicschool.edu</li>
+                    <li>✉️ info@rps.edu</li>
                     <li>🕐 8:00 AM - 4:00 PM</li>
                 </ul>
             </div>
@@ -3218,10 +3404,17 @@
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <a href="#" style="font-size: 1.5rem;">📘</a>
-                    <a href="#" style="font-size: 1.5rem;">📷</a>
+                    <!-- Add this inside <head> -->
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+                    <!-- Social icons -->
+                    <a href="https://www.facebook.com/reazpublicschool23" style="font-size: 1.5rem;"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@rpskstation" style="font-size: 1.5rem;"><i
+                            class="fa-brands fa-youtube"></i></a>
+                    <a href="#" style="font-size: 1.5rem;"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" style="font-size: 1.5rem;">🐦</a>
-                    <a href="#" style="font-size: 1.5rem;">📹</a>
                 </div>
             </div>
         </div>
